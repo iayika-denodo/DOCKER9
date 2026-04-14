@@ -1,0 +1,50 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_sports_betting
+    FOLDER = '/connectivity/base views'
+    DATASOURCENAME=ds_mysql
+    CATALOGNAME='${databases.mysql.folder.connectivity.folder.base views.views.jdbc.bv_sports_betting.CATALOGNAME}' 
+    RELATIONNAME='sports_betting' 
+    OUTPUTSCHEMA (
+        id = 'id' :'java.lang.Long' (OPT) (sourcetyperadix='10', sourcetypesize='19', description='', sourcetypeid='-5', sourcetypename='BIGINT')  NOT NULL SORTABLE,
+        customer_name = 'customer_name' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE,
+        bet_total = 'bet_total' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='2', sourcetyperadix='10', sourcetypesize='18', description='', sourcetypeid='3', sourcetypename='DECIMAL')  SORTABLE,
+        win_result = 'win_result' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE,
+        game_date = 'game_date' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='23', description='', sourcetypeid='93', sourcetypename='DATETIME')  SORTABLE,
+        player_name = 'player_name' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE,
+        player_team = 'player_team' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE,
+        bet_count = 'bet_count' :'java.lang.Long' (OPT) (sourcetyperadix='10', sourcetypesize='19', description='', sourcetypeid='-5', sourcetypename='BIGINT')  SORTABLE
+    )
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'id' )
+    INDEX 'PRIMARY' CLUSTER UNIQUE PRIMARY ( 'id' );
+
+CREATE OR REPLACE TABLE bv_sports_betting I18N us_pst (
+        id:long (notnull, sourcetypeid = '-5', sourcetyperadix = '10', sourcetypesize = '19', description = ''),
+        customer_name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255', description = ''),
+        bet_total:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '18', description = ''),
+        win_result:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50', description = ''),
+        game_date:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypesize = '23', description = ''),
+        player_name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255', description = ''),
+        player_team:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255', description = ''),
+        bet_count:long (sourcetypeid = '-5', sourcetyperadix = '10', sourcetypesize = '19', description = '')
+    )
+    FOLDER = '/connectivity/base views'
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_sports_betting(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD customer_name (any) OPT ANY
+             ADD bet_total (any) OPT ANY
+             ADD win_result (any) OPT ANY
+             ADD game_date (any) OPT ANY
+             ADD player_name (any) OPT ANY
+             ADD player_team (any) OPT ANY
+             ADD bet_count (any) OPT ANY
+        )
+        OUTPUTLIST (bet_count, bet_total, customer_name, game_date, id, player_name, player_team, win_result
+        )
+        WRAPPER (jdbc bv_sports_betting)
+    );
+

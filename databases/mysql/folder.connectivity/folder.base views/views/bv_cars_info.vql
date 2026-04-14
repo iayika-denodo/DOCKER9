@@ -1,0 +1,38 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_cars_info
+    FOLDER = '/connectivity/base views'
+    DATASOURCENAME=ds_mysql
+    CATALOGNAME='${databases.mysql.folder.connectivity.folder.base views.views.jdbc.bv_cars_info.CATALOGNAME}' 
+    RELATIONNAME='cars_info' 
+    OUTPUTSCHEMA (
+        car_id = 'car_id' :'java.lang.Integer' (OPT) (sourcetyperadix='10', sourcetypesize='10', description='', sourcetypeid='4', sourcetypename='INT')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        brand = 'brand' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', description='', sourcetypeid='12', sourcetypename='VARCHAR')  NOT NULL SORTABLE,
+        model = 'model' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', description='', sourcetypeid='12', sourcetypename='VARCHAR')  NOT NULL SORTABLE,
+        car_year = 'car_year' :'java.lang.Integer' (OPT) (sourcetyperadix='10', sourcetypesize='10', description='', sourcetypeid='4', sourcetypename='INT')  SORTABLE
+    )
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'car_id' )
+    INDEX 'PRIMARY' CLUSTER UNIQUE PRIMARY ( 'car_id' );
+
+CREATE OR REPLACE TABLE bv_cars_info I18N us_pst (
+        car_id:int (notnull, autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypesize = '10', description = ''),
+        brand:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50', description = ''),
+        model:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50', description = ''),
+        car_year:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypesize = '10', description = '')
+    )
+    FOLDER = '/connectivity/base views'
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'car_id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_cars_info(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD car_id (any) OPT ANY
+             ADD brand (any) OPT ANY
+             ADD model (any) OPT ANY
+             ADD car_year (any) OPT ANY
+        )
+        OUTPUTLIST (brand, car_id, car_year, model
+        )
+        WRAPPER (jdbc bv_cars_info)
+    );
+

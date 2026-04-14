@@ -1,0 +1,9 @@
+﻿1/databases/mysql/folder.integration/integration.vql
+*/databases/mysql/folder.connectivity/connectivity.vql
+*/databases/mysql/folder.connectivity/folder.base views/base views.vql
+*/databases/mysql/folder.connectivity/folder.data sources/data sources.vql
+*/databases/mysql/folder.connectivity/folder.data sources/datasources/jdbc/ds_mysql.vql
+1/databases/mysql/folder.connectivity/folder.base views/views/bv_sales_data.vql
+1/databases/mysql/folder.connectivity/folder.base views/views/bv_cars_info.vql
+*/databases/mysql/folder.connectivity/folder.base views/views/bv_cars_info.vql
+*/databases/mysql/folder.connectivity/folder.base views/views/bv_sales_data.vql

@@ -1,0 +1,45 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_authors
+    FOLDER = '/connectivity/base views'
+    DATASOURCENAME=ds_mysql
+    CATALOGNAME='${databases.mysql.folder.connectivity.folder.base views.views.jdbc.bv_authors.CATALOGNAME}' 
+    RELATIONNAME='authors' 
+    OUTPUTSCHEMA (
+        id = 'id' :'java.lang.Integer' (OPT) (sourcetyperadix='10', sourcetypesize='10', description='', sourcetypeid='4', sourcetypename='INT')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        first_name = 'first_name' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', description='', sourcetypeid='12', sourcetypename='VARCHAR')  NOT NULL SORTABLE,
+        last_name = 'last_name' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', description='', sourcetypeid='12', sourcetypename='VARCHAR')  NOT NULL SORTABLE,
+        email = 'email' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='100', description='', sourcetypeid='12', sourcetypename='VARCHAR')  NOT NULL SORTABLE,
+        birthdate = 'birthdate' :'java.time.LocalDate' (OPT) (sourcetyperadix='10', sourcetypesize='10', description='', sourcetypeid='91', sourcetypename='DATE')  NOT NULL SORTABLE,
+        added = 'added' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='19', description='', sourcetypeid='93', sourcetypename='TIMESTAMP')  NOT NULL SORTABLE IS_GENERATEDCOLUMN
+    )
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'id' )
+    INDEX 'email' OTHER UNIQUE ( 'email' )
+    INDEX 'PRIMARY' CLUSTER UNIQUE PRIMARY ( 'id' );
+
+CREATE OR REPLACE TABLE bv_authors I18N us_pst (
+        id:int (notnull, autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypesize = '10', description = ''),
+        first_name:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50', description = ''),
+        last_name:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50', description = ''),
+        email:text (notnull, sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100', description = ''),
+        birthdate:localdate (notnull, sourcetypeid = '91', sourcetyperadix = '10', sourcetypesize = '10', description = ''),
+        added:timestamp (notnull, generatedcolumn, sourcetypeid = '93', sourcetyperadix = '10', sourcetypesize = '19', description = '')
+    )
+    FOLDER = '/connectivity/base views'
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_authors(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD first_name (any) OPT ANY
+             ADD last_name (any) OPT ANY
+             ADD email (any) OPT ANY
+             ADD birthdate (any) OPT ANY
+             ADD added (any) OPT ANY
+        )
+        OUTPUTLIST (added, birthdate, email, first_name, id, last_name
+        )
+        WRAPPER (jdbc bv_authors)
+    );
+

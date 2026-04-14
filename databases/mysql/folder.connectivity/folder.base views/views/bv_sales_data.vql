@@ -1,0 +1,38 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_sales_data
+    FOLDER = '/connectivity/base views'
+    DATASOURCENAME=ds_mysql
+    CATALOGNAME='${databases.mysql.folder.connectivity.folder.base views.views.jdbc.bv_sales_data.CATALOGNAME}' 
+    RELATIONNAME='sales_data' 
+    OUTPUTSCHEMA (
+        sales_id = 'sales_id' :'java.lang.Integer' (OPT) (sourcetyperadix='10', sourcetypesize='10', description='', sourcetypeid='4', sourcetypename='INT')  NOT NULL SORTABLE IS_AUTOINCREMENT,
+        car_id = 'car_id' :'java.lang.Integer' (OPT) (sourcetyperadix='10', sourcetypesize='10', description='', sourcetypeid='4', sourcetypename='INT')  NOT NULL SORTABLE,
+        sale_date = 'sale_date' :'java.time.LocalDate' (OPT) (sourcetyperadix='10', sourcetypesize='10', description='', sourcetypeid='91', sourcetypename='DATE')  NOT NULL SORTABLE,
+        price = 'price' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='2', sourcetyperadix='10', sourcetypesize='10', description='', sourcetypeid='3', sourcetypename='DECIMAL')  NOT NULL SORTABLE
+    )
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'sales_id' , 'car_id' )
+    INDEX 'PRIMARY' CLUSTER UNIQUE PRIMARY ( 'sales_id' , 'car_id' );
+
+CREATE OR REPLACE TABLE bv_sales_data I18N us_pst (
+        sales_id:int (notnull, autoincrement, sourcetypeid = '4', sourcetyperadix = '10', sourcetypesize = '10', description = ''),
+        car_id:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypesize = '10', description = ''),
+        sale_date:localdate (notnull, sourcetypeid = '91', sourcetyperadix = '10', sourcetypesize = '10', description = ''),
+        price:decimal (notnull, sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '10', description = '')
+    )
+    FOLDER = '/connectivity/base views'
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'sales_id' , 'car_id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_sales_data(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD sales_id (any) OPT ANY
+             ADD car_id (any) OPT ANY
+             ADD sale_date (any) OPT ANY
+             ADD price (any) OPT ANY
+        )
+        OUTPUTLIST (car_id, price, sale_date, sales_id
+        )
+        WRAPPER (jdbc bv_sales_data)
+    );
+

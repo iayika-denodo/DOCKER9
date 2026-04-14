@@ -1,0 +1,4 @@
+﻿*/databases/mysql/folder.connectivity/connectivity.vql
+1/databases/mysql/folder.connectivity/folder.base views/base views.vql
+*/databases/mysql/folder.connectivity/folder.data sources/data sources.vql
+1/databases/mysql/folder.connectivity/folder.data sources/datasources/jdbc/ds_mysql.vql

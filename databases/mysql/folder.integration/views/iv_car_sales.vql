@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_car_sales FOLDER = '/integration' AS SELECT bv_cars_info.car_id AS car_id, bv_sales_data.sales_id AS sales_id, bv_cars_info.brand AS brand, bv_cars_info.model AS model, bv_sales_data.price AS price, bv_cars_info.car_year AS car_year, bv_sales_data.sale_date AS sale_date FROM bv_sales_data AS bv_sales_data INNER JOIN bv_cars_info AS bv_cars_info ON bv_sales_data.car_id = bv_cars_info.car_id ;
+
+ALTER VIEW iv_car_sales
+ LAYOUT (bv_cars_info = [525, 272, 200, 200], bv_sales_data = [1117, 299, 200, 200]);
+

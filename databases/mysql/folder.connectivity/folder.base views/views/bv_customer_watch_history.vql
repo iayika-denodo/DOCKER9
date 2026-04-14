@@ -1,0 +1,62 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_customer_watch_history
+    FOLDER = '/connectivity/base views'
+    DATASOURCENAME=ds_mysql
+    CATALOGNAME='${databases.mysql.folder.connectivity.folder.base views.views.jdbc.bv_customer_watch_history.CATALOGNAME}' 
+    RELATIONNAME='customer_watch_history' 
+    OUTPUTSCHEMA (
+        id = 'id' :'java.lang.Integer' (OPT) (sourcetyperadix='10', sourcetypesize='10', description='', sourcetypeid='4', sourcetypename='INT')  NOT NULL SORTABLE,
+        firstname = 'firstName' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='100', description='', sourcetypeid='12', sourcetypename='VARCHAR')  ESCAPE SORTABLE,
+        lastname = 'lastName' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='100', description='', sourcetypeid='12', sourcetypename='VARCHAR')  ESCAPE SORTABLE,
+        gender = 'gender' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE,
+        city = 'city' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='100', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE,
+        phone = 'phone' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE,
+        email = 'email' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE,
+        status = 'status' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE,
+        birthdate = 'birthdate' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='23', description='', sourcetypeid='93', sourcetypename='DATETIME')  SORTABLE,
+        ip_address = 'ip_address' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='45', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE,
+        favorite_movie = 'favorite_movie' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE,
+        favorite_genre = 'favorite_genre' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='100', description='', sourcetypeid='12', sourcetypename='VARCHAR')  SORTABLE
+    )
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'id' )
+    INDEX 'PRIMARY' CLUSTER UNIQUE PRIMARY ( 'id' );
+
+CREATE OR REPLACE TABLE bv_customer_watch_history I18N us_pst (
+        id:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypesize = '10', description = ''),
+        firstname:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100', description = ''),
+        lastname:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100', description = ''),
+        gender:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20', description = ''),
+        city:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100', description = ''),
+        phone:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50', description = ''),
+        email:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255', description = ''),
+        status:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50', description = ''),
+        birthdate:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypesize = '23', description = ''),
+        ip_address:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '45', description = ''),
+        favorite_movie:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255', description = ''),
+        favorite_genre:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100', description = '')
+    )
+    FOLDER = '/connectivity/base views'
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_customer_watch_history(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD firstname (any) OPT ANY
+             ADD lastname (any) OPT ANY
+             ADD gender (any) OPT ANY
+             ADD city (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD email (any) OPT ANY
+             ADD status (any) OPT ANY
+             ADD birthdate (any) OPT ANY
+             ADD ip_address (any) OPT ANY
+             ADD favorite_movie (any) OPT ANY
+             ADD favorite_genre (any) OPT ANY
+        )
+        OUTPUTLIST (birthdate, city, email, favorite_genre, favorite_movie, firstname, gender, id, ip_address, lastname, phone, status
+        )
+        WRAPPER (jdbc bv_customer_watch_history)
+    );
+
