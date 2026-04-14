@@ -1,0 +1,7 @@
+﻿1/databases/postgres/folder.integration/integration.vql
+*/databases/postgres/folder.connectivity/connectivity.vql
+*/databases/postgres/folder.connectivity/folder.base views/base views.vql
+*/databases/postgres/folder.connectivity/folder.data sources/data sources.vql
+*/databases/postgres/folder.connectivity/folder.data sources/datasources/jdbc/ds_denodo.vql
+1/databases/postgres/folder.connectivity/folder.base views/views/bv_dummy_car_data.vql
+*/databases/postgres/folder.connectivity/folder.base views/views/bv_dummy_car_data.vql

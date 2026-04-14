@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_dummy_nba_data FOLDER = '/integration' AS SELECT bv_dummy_nba_data.id AS id, bv_dummy_nba_data.player_name AS player_name, bv_dummy_nba_data.team AS team, bv_dummy_nba_data.position AS position, bv_dummy_nba_data.points_per_game AS points_per_game, bv_dummy_nba_data.rebounds_per_game AS rebounds_per_game, bv_dummy_nba_data.assists_per_game AS assists_per_game FROM bv_dummy_nba_data WHERE id <= 5000 ORDER BY id ASC;
+
+ALTER VIEW iv_dummy_nba_data
+ LAYOUT (bv_dummy_nba_data = [20, 20, 200, 200]);
+
