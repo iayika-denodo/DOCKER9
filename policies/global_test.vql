@@ -1,0 +1,12 @@
+﻿CREATE OR REPLACE GLOBAL_SECURITY_POLICY global_test
+    ENABLED = TRUE
+    AUDIENCE (
+        ALL
+    )
+    ELEMENTS (
+        VIEWS TAGGED ANY  (test)
+    )
+    RESTRICTION (
+        DENY 
+    );
+
