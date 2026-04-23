@@ -1,0 +1,3 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE USER denodotestsamples '${users.denodotestsamples.PASSWORD}'  ${users.denodotestsamples.PASSWORD.ENCRYPTED} ${users.denodotestsamples.PASSWORD.ALGORITHM}  'User for the Denodo Test Samples database';
+
