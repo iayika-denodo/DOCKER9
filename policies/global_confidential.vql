@@ -1,0 +1,12 @@
+﻿CREATE OR REPLACE GLOBAL_SECURITY_POLICY global_confidential
+    ENABLED = TRUE
+    AUDIENCE (
+        ALL
+    )
+    ELEMENTS (
+        VIEWS TAGGED ANY  (confidential)
+    )
+    RESTRICTION (
+        DENY ANY (confidential) 
+    );
+
