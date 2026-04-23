@@ -1,0 +1,3 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE USER test_45 '${users.test_45.PASSWORD}'  ${users.test_45.PASSWORD.ENCRYPTED} ${users.test_45.PASSWORD.ALGORITHM}  'Testpass45!';
+
