@@ -1,0 +1,3 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE USER basic_user '${users.basic_user.PASSWORD}'  ${users.basic_user.PASSWORD.ENCRYPTED} ${users.basic_user.PASSWORD.ALGORITHM}  '';
+
