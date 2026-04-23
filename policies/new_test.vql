@@ -1,0 +1,13 @@
+﻿CREATE OR REPLACE GLOBAL_SECURITY_POLICY new_test
+    ENABLED = TRUE
+    AUDIENCE (
+        ALL
+    )
+    ELEMENTS (
+        ALL VIEWS
+    )
+    RESTRICTION (
+        FILTER = ''
+        MASKING ANY (test) WITH (HIDE) (numbers WITH REDACT, datetimes WITH DEFAULT, texts WITH HIDE) 
+    );
+
