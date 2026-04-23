@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE ROLE purchasing 'Purchasing';
+
