@@ -1,0 +1,3 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE USER local_user '${users.local_user.PASSWORD}'  ${users.local_user.PASSWORD.ENCRYPTED} ${users.local_user.PASSWORD.ALGORITHM}  '';
+
