@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE ROLE "public relations" 'Public Relations';
+
