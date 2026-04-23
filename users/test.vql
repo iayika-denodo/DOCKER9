@@ -1,0 +1,3 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE USER test '${users.test.PASSWORD}'  ${users.test.PASSWORD.ENCRYPTED} ${users.test.PASSWORD.ALGORITHM}  'Passpass1!';
+
