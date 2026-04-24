@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATABASE query_acceleration 'Database used by the automatic recommendation tool for summary acceleration.';
+
+ALTER DATABASE query_acceleration
+  CHARSET RESTRICTED;
+

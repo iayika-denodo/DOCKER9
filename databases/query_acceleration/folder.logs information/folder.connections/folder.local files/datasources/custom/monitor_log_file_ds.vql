@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATASOURCE CUSTOM monitor_log_file_ds
+    FOLDER = '/logs information/connections/local files'
+    CLASSNAME='com.denodo.dashboard.connect.log.LogCustomWrapper'
+    CLASSPATH='../resources/vdp/query_acceleration/denodo-dmt-log-customwrapper.jar';
+

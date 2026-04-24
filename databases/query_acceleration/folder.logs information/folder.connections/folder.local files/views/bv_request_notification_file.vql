@@ -1,0 +1,117 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER CUSTOM bv_request_notification_file
+    FOLDER = '/logs information/connections/local files'
+    DATASOURCENAME=monitor_log_file_ds
+    PARAMETERS (
+      'Date Pattern' = 'yyyy-MM-dd''T''HH:mm:ss.SSS',
+      'Date Extractor Pattern' = '.*\\t(\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d\\d\\d).*',
+      'Log timezone' = 'GMT',
+      'Content Extractor Pattern' = '([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t\\r\\n]*)(?:\\t([\^\\r\\n]*))?\\r?\\n?.*',
+      'Filepath' = ROUTE LOCAL 'LocalConnection' '${databases.query_acceleration.folder.logs information.folder.connections.folder.local files.views.custom.bv_request_notification_file.Filepath.ROUTE.LOCAL.PATH}',
+      'Sequential Search Interval' = 1000,
+      'Rolling Implementation Class Name' = 'com.denodo.dashboard.connect.log.rollingpolicy.LexicographicRollingPolicy'
+    )
+    OUTPUTSCHEMA (
+        servername = 'out0' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        host = 'out1' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        port = 'out2' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        id = 'out3' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        databasename = 'out4' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        username = 'out5' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        notificationtype = 'out6' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        sessionid = 'out7' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        start_time_as_text = 'out8' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        end_time_as_text = 'out9' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        duration_as_text = 'out10' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        waiting_time_as_text = 'out11' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        num_rows_as_text = 'out12' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        state = 'out13' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        completed_as_text = 'out14' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        cache_as_text = 'out15' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        query = 'out16' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        requesttype = 'out17' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        elements = 'out18' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        useragent = 'out19' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        accessinterface = 'out20' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        clientip = 'out21' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        transaction_id_as_text = 'out22' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        webservicename = 'out23' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        date = 'Extracted Date' : 'java.util.Date' (OPT) NOT NULL NOT SORTABLE NOT UPDATEABLE,
+        search_start_date = 'Search Start Date' : 'java.util.Date' (OBL) NOT NULL NOT SORTABLE NOT UPDATEABLE,
+        search_end_date = 'Search End Date' : 'java.util.Date' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        logs_path = 'LOGS_PATH' : 'java.lang.String' (OBL) (DEFAULTVALUE='/opt/denodo/logs/monitor/logs')  EXTERN NOT SORTABLE NOT UPDATEABLE,
+        log_prefix = 'LOG_PREFIX' : 'java.lang.String' (OBL) (DEFAULTVALUE='vdp')  EXTERN NOT SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TABLE bv_request_notification_file I18N rfc_restful (
+        servername:text,
+        host:text,
+        port:int,
+        id:long,
+        databasename:text,
+        username:text,
+        notificationtype:text,
+        sessionid:long,
+        start_time_as_text:text,
+        end_time_as_text:text,
+        duration_as_text:text,
+        waiting_time_as_text:text,
+        num_rows_as_text:text,
+        state:text,
+        completed_as_text:text,
+        cache_as_text:text,
+        query:text,
+        requesttype:text,
+        elements:text,
+        useragent:text,
+        accessinterface:text,
+        clientip:text,
+        transaction_id_as_text:text,
+        webservicename:text,
+        date:date,
+        search_start_date:localdate (notnull, sourcetypeid = '91', sourcetypedecimals = '0'),
+        search_end_date:date,
+        logs_path:text,
+        log_prefix:text
+    )
+    FOLDER = '/logs information/connections/local files'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_request_notification_file(
+        I18N rfc_restful
+        CONSTRAINTS (
+             ADD date (any) OPT ANY
+             ADD search_end_date (any) OPT ANY
+             ADD servername NOS ZERO ()
+             ADD host NOS ZERO ()
+             ADD port NOS ZERO ()
+             ADD id NOS ZERO ()
+             ADD databasename NOS ZERO ()
+             ADD username NOS ZERO ()
+             ADD notificationtype NOS ZERO ()
+             ADD sessionid NOS ZERO ()
+             ADD start_time_as_text NOS ZERO ()
+             ADD end_time_as_text NOS ZERO ()
+             ADD duration_as_text NOS ZERO ()
+             ADD waiting_time_as_text NOS ZERO ()
+             ADD num_rows_as_text NOS ZERO ()
+             ADD state NOS ZERO ()
+             ADD completed_as_text NOS ZERO ()
+             ADD cache_as_text NOS ZERO ()
+             ADD query NOS ZERO ()
+             ADD requesttype NOS ZERO ()
+             ADD elements NOS ZERO ()
+             ADD useragent NOS ZERO ()
+             ADD accessinterface NOS ZERO ()
+             ADD clientip NOS ZERO ()
+             ADD transaction_id_as_text NOS ZERO ()
+             ADD webservicename NOS ZERO ()
+             ADD search_start_date (any) OBL ONE
+             ADD logs_path (=) OBL ONE
+             ADD log_prefix (=) OBL ONE
+        )
+        OUTPUTLIST (accessinterface, cache_as_text, clientip, completed_as_text, databasename, date, duration_as_text, elements, end_time_as_text, host, id, notificationtype, num_rows_as_text, port, query, requesttype, search_end_date, search_start_date, servername, sessionid, start_time_as_text, state, transaction_id_as_text, useragent, username, waiting_time_as_text, webservicename
+        )
+        WRAPPER (custom bv_request_notification_file)
+    );
+

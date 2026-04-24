@@ -1,0 +1,24 @@
+﻿CREATE OR REPLACE INTERFACE VIEW i_queryblock_notification (
+        sessionid:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '19', sourcetypeid = '-5'),
+        queryid:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '19', sourcetypeid = '-5'),
+        blockid:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '30', sourcetypeid = '12'),
+        effectivetime:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '19', sourcetypeid = '-5'),
+        leafviews:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '4000', sourcetypeid = '12'),
+        comparable:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '10', sourcetypeid = '12'),
+        summariesapplied:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '4000', sourcetypeid = '12'),
+        starttime:timestamp (sourcetypedecimals = '6', sourcetyperadix = '10', sourcetypesize = '29', sourcetypeid = '93'),
+        duration:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '19', sourcetypeid = '-5')
+    )
+    SET IMPLEMENTATION queryblock_notification_file_impl
+    FOLDER = '/logs information/interfaces'
+    DESCRIPTION = 'Interface providing access to the information about query blocks of the Denodo Monitor logs.
+This information is used for Smart Query Acceleration by the tool available under Tools -> Query optimizations -> Summaries recommendation.
+This tool automatically recommends summary candidates to accelerate queries based on this workload.
+
+In order for this tool to work please make sure the implementation is valid and it is accessing:
+- The vdp-queryblocks.log file of the Denodo Monitor, if it is configured to store the data in a file system.
+- The queryblock_notification table if it is configured to store the data in a JDBC database.' ;
+
+ALTER VIEW i_queryblock_notification
+ LAYOUT (queryblock_notification_file_impl = [360, 20, 246, 105]);
+
