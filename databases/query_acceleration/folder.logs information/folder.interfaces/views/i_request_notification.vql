@@ -1,0 +1,58 @@
+﻿CREATE OR REPLACE INTERFACE VIEW i_request_notification (
+        servername:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12'),
+        host:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12'),
+        port:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '10', sourcetypeid = '12'),
+        id:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '19', sourcetypeid = '-5'),
+        databasename:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12'),
+        username:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12'),
+        notificationtype:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '30', sourcetypeid = '12'),
+        sessionid:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '19', sourcetypeid = '-5'),
+        starttime:timestamp (sourcetypedecimals = '6', sourcetyperadix = '10', sourcetypesize = '29', sourcetypeid = '93'),
+        endtime:timestamp (sourcetypedecimals = '6', sourcetyperadix = '10', sourcetypesize = '29', sourcetypeid = '93'),
+        duration:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '19', sourcetypeid = '-5'),
+        waitingtime:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '19', sourcetypeid = '-5'),
+        numrows:int (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '10', sourcetypeid = '4'),
+        state:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '30', sourcetypeid = '12'),
+        query:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '4000', sourcetypeid = '12'),
+        requesttype:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '50', sourcetypeid = '12'),
+        elements:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '4000', sourcetypeid = '12'),
+        useragent:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12'),
+        accessinterface:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12'),
+        clientip:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '50', sourcetypeid = '12'),
+        webservicename:text (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '200', sourcetypeid = '12')
+    )
+    SET IMPLEMENTATION request_notification_file_impl(
+        servername = servername,
+        host = host,
+        port = port,
+        id = id,
+        databasename = databasename,
+        username = username,
+        notificationtype = notificationtype,
+        sessionid = sessionid,
+        starttime = starttime,
+        endtime = endtime,
+        duration = duration,
+        waitingtime = waitingtime,
+        numrows = numrows,
+        state = state,
+        query = query,
+        requesttype = requesttype,
+        elements = elements,
+        useragent = useragent,
+        accessinterface = accessinterface,
+        clientip = clientip,
+        webservicename = webservicename    
+)
+    FOLDER = '/logs information/interfaces'
+    DESCRIPTION = 'Interface providing access to the information about requests of the Denodo Monitor logs.
+This information is used for Smart Query Acceleration by the tool available under Tools -> Query optimizations -> Summaries recommendation.
+This tool automatically recommends summary candidates to accelerate queries based on this workload.
+
+In order for this tool to work please make sure the implementation is valid and it is accessing:
+- The vdp-queries.log file of the Denodo Monitor, if it is configured to store the data in a file system.
+- The request_notification table if it is configured to store the data in a JDBC database.' ;
+
+ALTER VIEW i_request_notification
+ LAYOUT (request_notification_file_impl = [410, 20, 251, 105]);
+

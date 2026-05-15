@@ -1,0 +1,72 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER CUSTOM bv_queryblock_notification_file
+    FOLDER = '/logs information/connections/local files'
+    DATASOURCENAME=monitor_log_file_ds
+    PARAMETERS (
+      'Date Pattern' = 'yyyy-MM-dd''T''HH:mm:ss.SSS',
+      'Date Extractor Pattern' = '.*\\t(\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d\\d\\d).*',
+      'Log timezone' = 'GMT',
+      'Content Extractor Pattern' = '([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\^\\t]*)\\t([\\d]*)\\r?\\n?.*',
+      'Filepath' = ROUTE LOCAL 'LocalConnection' '${databases.query_acceleration.folder.logs information.folder.connections.folder.local files.views.custom.bv_queryblock_notification_file.Filepath.ROUTE.LOCAL.PATH}',
+      'Sequential Search Interval' = 1000,
+      'Rolling Implementation Class Name' = 'com.denodo.dashboard.connect.log.rollingpolicy.LexicographicRollingPolicy'
+    )
+    OUTPUTSCHEMA (
+        sessionid = 'out0' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
+        queryid = 'out1' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
+        blockid = 'out2' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
+        effectivetime = 'out3' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
+        leafviews = 'out4' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
+        comparable = 'out5' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
+        summariesapplied = 'out6' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
+        starttime = 'out7' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
+        duration = 'out8' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
+        extracted_date = 'Extracted Date' : 'java.time.LocalDate' (OPT) (sourcetypeid='91')  NOT NULL NOT SORTABLE NOT UPDATEABLE,
+        search_start_date = 'Search Start Date' : 'java.time.LocalDate' (OBL) (sourcetypeid='91')  NOT NULL NOT SORTABLE NOT UPDATEABLE,
+        search_end_date = 'Search End Date' : 'java.time.LocalDate' (OPT) (sourcetypeid='91')  NOT SORTABLE NOT UPDATEABLE,
+        logs_path = 'LOGS_PATH' : 'java.lang.String' (OBL) (DEFAULTVALUE='/opt/denodo/logs/monitor/logs')  EXTERN NOT SORTABLE NOT UPDATEABLE,
+        log_prefix = 'LOG_PREFIX' : 'java.lang.String' (OBL) (DEFAULTVALUE='vdp')  EXTERN NOT SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TABLE bv_queryblock_notification_file I18N rfc_restful (
+        sessionid:int (sourcetypeid = '-5', sourcetypesize = '19'),
+        queryid:long (sourcetypeid = '-5', sourcetypesize = '19'),
+        blockid:text,
+        effectivetime:long,
+        leafviews:text (sourcetypeid = '12'),
+        comparable:text (sourcetypeid = '12'),
+        summariesapplied:text (sourcetypeid = '12'),
+        starttime:localdate,
+        duration:long (sourcetypeid = '-5', sourcetypesize = '19'),
+        extracted_date:localdate (notnull, sourcetypeid = '91'),
+        search_start_date:localdate (notnull, sourcetypeid = '91'),
+        search_end_date:localdate (sourcetypeid = '91'),
+        logs_path:text,
+        log_prefix:text
+    )
+    FOLDER = '/logs information/connections/local files'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD requests_log(
+        I18N rfc_restful
+        CONSTRAINTS (
+             ADD extracted_date (any) OPT ANY
+             ADD search_end_date (any) OPT ANY
+             ADD sessionid NOS ZERO ()
+             ADD queryid NOS ZERO ()
+             ADD blockid NOS ZERO ()
+             ADD effectivetime NOS ZERO ()
+             ADD leafviews NOS ZERO ()
+             ADD comparable NOS ZERO ()
+             ADD summariesapplied NOS ZERO ()
+             ADD starttime NOS ZERO ()
+             ADD duration NOS ZERO ()
+             ADD search_start_date (=) OBL ONE
+             ADD logs_path (=) OBL ONE
+             ADD log_prefix (=) OBL ONE
+        )
+        OUTPUTLIST (blockid, comparable, duration, effectivetime, extracted_date, leafviews, queryid, search_end_date, search_start_date, sessionid, starttime, summariesapplied
+        )
+        WRAPPER (custom bv_queryblock_notification_file)
+    );
+

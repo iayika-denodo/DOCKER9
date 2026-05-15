@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW queryblock_notification_file_impl FOLDER = '/logs information/connections/local files' AS SELECT bv_queryblock_notification_file.sessionid AS sessionid, bv_queryblock_notification_file.queryid AS queryid, bv_queryblock_notification_file.blockid AS blockid, bv_queryblock_notification_file.effectivetime AS effectivetime, bv_queryblock_notification_file.leafviews AS leafviews, bv_queryblock_notification_file.comparable AS comparable, bv_queryblock_notification_file.summariesapplied AS summariesapplied, bv_queryblock_notification_file.starttime AS starttime, bv_queryblock_notification_file.duration AS duration FROM bv_queryblock_notification_file WHERE (logs_path = '/opt/denodo/logs/monitor/logs' AND search_start_date = DATE '1970-01-01' AND log_prefix = 'vdp');
+
+ALTER VIEW queryblock_notification_file_impl
+ LAYOUT (bv_queryblock_notification_file = [20, 20, 219, 285]);
+

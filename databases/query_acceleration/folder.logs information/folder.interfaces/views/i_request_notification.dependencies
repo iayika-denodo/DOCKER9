@@ -1,0 +1,8 @@
+﻿*/databases/query_acceleration/folder.logs information/logs information.vql
+1/databases/query_acceleration/folder.logs information/folder.interfaces/interfaces.vql
+*/databases/query_acceleration/folder.logs information/folder.connections/connections.vql
+*/databases/query_acceleration/folder.logs information/folder.connections/folder.local files/local files.vql
+*/databases/query_acceleration/folder.logs information/folder.connections/folder.local files/datasources/custom/monitor_log_file_ds.vql
+*/databases/query_acceleration/folder.logs information/folder.connections/folder.local files/views/bv_request_notification_file.vql
+1/databases/query_acceleration/folder.logs information/folder.connections/folder.local files/views/request_notification_file_impl.vql
+*/databases/query_acceleration/folder.logs information/folder.connections/folder.local files/views/request_notification_file_impl.vql
