@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE USER local '${users.local.PASSWORD}'  ${users.local.PASSWORD.ENCRYPTED} ${users.local.PASSWORD.ALGORITHM}  'local'
+GRANT ROLE allusers,vdp_developer
+GRANT CONNECT ON admin;
+
