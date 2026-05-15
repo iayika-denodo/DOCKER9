@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW iv_test FOLDER = '/intergration' AS SELECT bv_test.test AS test, bv_test.other AS other, bv_test.double_space AS double_space FROM bv_test;
+
+ALTER VIEW iv_test
+ LAYOUT (bv_test = [20, 20, 200, 200]);
+

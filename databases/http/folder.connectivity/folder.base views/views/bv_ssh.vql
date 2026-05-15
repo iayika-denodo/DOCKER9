@@ -1,0 +1,29 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM bv_ssh
+    FOLDER = '/connectivity/base views'
+    DATASOURCENAME=ds_ssh
+    PARAMETERS (
+      'Command' = 'python C://Users//IkemonsoAyika//Desktop//TOOLS//DEV//scripts//http_datasource_test_v2.0.py'
+    )
+    OUTPUTSCHEMA (
+        exitcode = 'Exit code' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE,
+        executionresult = 'Execution result' : 'java.lang.String' (sourcetypeid='12')  NOT SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TABLE bv_ssh I18N us_pst (
+        exitcode:text (sourcetypeid = '12'),
+        executionresult:text (sourcetypeid = '12')
+    )
+    FOLDER = '/connectivity/base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_ssh(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD exitcode NOS ZERO ()
+             ADD executionresult NOS ZERO ()
+        )
+        OUTPUTLIST (executionresult, exitcode
+        )
+        WRAPPER (custom bv_ssh)
+    );
+

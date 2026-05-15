@@ -1,0 +1,29 @@
+﻿CREATE OR REPLACE WRAPPER DF test
+    FOLDER = '/connectivity/base views'
+    DATASOURCENAME=ds_test
+    OUTPUTSCHEMA (
+        test = 'test',
+        other = 'other',
+        double_space = 'double_space'
+    );
+
+CREATE OR REPLACE TABLE bv_test I18N us_pst (
+        test:text,
+        other:text,
+        double_space:text
+    )
+    FOLDER = '/connectivity/base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD test(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD test NOS ZERO ()
+             ADD other NOS ZERO ()
+             ADD double_space NOS ZERO ()
+        )
+        OUTPUTLIST (double_space, other, test
+        )
+        WRAPPER (df test)
+    );
+

@@ -1,0 +1,156 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JSON ds_datacatalog_elements
+    FOLDER = '/connectivity/data sources/dc'
+    DATASOURCENAME=ds_datacatalog_elements
+    TUPLEROOT '/JSONFile/JSONArray'
+    ROUTE HTTP 'http.ApacheHttpClientConnection,120000' POST '${databases.http.folder.connectivity.folder.data sources.folder.dc.views.json.ds_datacatalog_elements.ROUTE.HTTP.URL}'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        serverid = 'JSONFile.JSONArray.serverId' : 'java.lang.Integer',
+        serverresult = 'JSONFile.JSONArray.serverResult' : REGISTER OF (
+            databases = 'databases' : REGISTER OF (
+                inserted = 'inserted' : ARRAY OF (
+                    inserted = 'inserted' : REGISTER OF (
+                        field_0 = 'field_0' : 'java.lang.String'
+                    )
+                ),
+                removed = 'removed' : ARRAY OF (
+                    removed = 'removed' : REGISTER OF (
+                        field_0 = 'field_0' : 'java.lang.String'
+                    )
+                ),
+                modified = 'modified' : ARRAY OF (
+                    modified = 'modified' : REGISTER OF (
+                        field_0 = 'field_0' : 'java.lang.String'
+                    )
+                )
+            ),
+            views = 'views' : REGISTER OF (
+                inserted = 'inserted' : ARRAY OF (
+                    inserted = 'inserted' : REGISTER OF (
+                        field_0 = 'field_0' : 'java.lang.String'
+                    )
+                ),
+                removed = 'removed' : ARRAY OF (
+                    removed = 'removed' : REGISTER OF (
+                        field_0 = 'field_0' : 'java.lang.String'
+                    )
+                ),
+                modified = 'modified' : ARRAY OF (
+                    modified = 'modified' : REGISTER OF (
+                        field_0 = 'field_0' : 'java.lang.String'
+                    )
+                )
+            ),
+            webservices = 'webservices' : REGISTER OF (
+                inserted = 'inserted' : ARRAY OF (
+                    inserted = 'inserted' : REGISTER OF (
+                        field_0 = 'field_0' : 'java.lang.String'
+                    )
+                ),
+                removed = 'removed' : ARRAY OF (
+                    removed = 'removed' : REGISTER OF (
+                        field_0 = 'field_0' : 'java.lang.String'
+                    )
+                ),
+                modified = 'modified' : ARRAY OF (
+                    modified = 'modified' : REGISTER OF (
+                        field_0 = 'field_0' : 'java.lang.String'
+                    )
+                )
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_databases_inserted_inserted AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_databases_inserted AS ARRAY OF ds_datacatalog_elements_serverresult_databases_inserted_inserted;
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_databases_removed_removed AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_databases_removed AS ARRAY OF ds_datacatalog_elements_serverresult_databases_removed_removed;
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_databases_modified_modified AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_databases_modified AS ARRAY OF ds_datacatalog_elements_serverresult_databases_modified_modified;
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_databases AS REGISTER OF (inserted:ds_datacatalog_elements_serverresult_databases_inserted, removed:ds_datacatalog_elements_serverresult_databases_removed, modified:ds_datacatalog_elements_serverresult_databases_modified);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_views_inserted_inserted AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_views_inserted AS ARRAY OF ds_datacatalog_elements_serverresult_views_inserted_inserted;
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_views_removed_removed AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_views_removed AS ARRAY OF ds_datacatalog_elements_serverresult_views_removed_removed;
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_views_modified_modified AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_views_modified AS ARRAY OF ds_datacatalog_elements_serverresult_views_modified_modified;
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_views AS REGISTER OF (inserted:ds_datacatalog_elements_serverresult_views_inserted, removed:ds_datacatalog_elements_serverresult_views_removed, modified:ds_datacatalog_elements_serverresult_views_modified);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_webservices_inserted_inserted AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_webservices_inserted AS ARRAY OF ds_datacatalog_elements_serverresult_webservices_inserted_inserted;
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_webservices_removed_removed AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_webservices_removed AS ARRAY OF ds_datacatalog_elements_serverresult_webservices_removed_removed;
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_webservices_modified_modified AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_webservices_modified AS ARRAY OF ds_datacatalog_elements_serverresult_webservices_modified_modified;
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult_webservices AS REGISTER OF (inserted:ds_datacatalog_elements_serverresult_webservices_inserted, removed:ds_datacatalog_elements_serverresult_webservices_removed, modified:ds_datacatalog_elements_serverresult_webservices_modified);
+
+CREATE OR REPLACE TYPE ds_datacatalog_elements_serverresult AS REGISTER OF (databases:ds_datacatalog_elements_serverresult_databases, views:ds_datacatalog_elements_serverresult_views, webservices:ds_datacatalog_elements_serverresult_webservices);
+
+CREATE OR REPLACE TABLE bv_elements I18N us_pst (
+        serverid:int,
+        serverresult:ds_datacatalog_elements_serverresult
+    )
+    FOLDER = '/connectivity/data sources/dc'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_datacatalog_elements(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD serverid NOS ZERO ()
+             ADD serverresult NOS ZERO ()
+             ADD serverresult.databases NOS ZERO ()
+             ADD serverresult.databases.inserted NOS ZERO ()
+             ADD serverresult.databases.inserted NOS ZERO ()
+             ADD serverresult.databases.inserted.field_0 NOS ZERO ()
+             ADD serverresult.databases.removed NOS ZERO ()
+             ADD serverresult.databases.removed NOS ZERO ()
+             ADD serverresult.databases.removed.field_0 NOS ZERO ()
+             ADD serverresult.databases.modified NOS ZERO ()
+             ADD serverresult.databases.modified NOS ZERO ()
+             ADD serverresult.databases.modified.field_0 NOS ZERO ()
+             ADD serverresult.views NOS ZERO ()
+             ADD serverresult.views.inserted NOS ZERO ()
+             ADD serverresult.views.inserted NOS ZERO ()
+             ADD serverresult.views.inserted.field_0 NOS ZERO ()
+             ADD serverresult.views.removed NOS ZERO ()
+             ADD serverresult.views.removed NOS ZERO ()
+             ADD serverresult.views.removed.field_0 NOS ZERO ()
+             ADD serverresult.views.modified NOS ZERO ()
+             ADD serverresult.views.modified NOS ZERO ()
+             ADD serverresult.views.modified.field_0 NOS ZERO ()
+             ADD serverresult.webservices NOS ZERO ()
+             ADD serverresult.webservices.inserted NOS ZERO ()
+             ADD serverresult.webservices.inserted NOS ZERO ()
+             ADD serverresult.webservices.inserted.field_0 NOS ZERO ()
+             ADD serverresult.webservices.removed NOS ZERO ()
+             ADD serverresult.webservices.removed NOS ZERO ()
+             ADD serverresult.webservices.removed.field_0 NOS ZERO ()
+             ADD serverresult.webservices.modified NOS ZERO ()
+             ADD serverresult.webservices.modified NOS ZERO ()
+             ADD serverresult.webservices.modified.field_0 NOS ZERO ()
+        )
+        OUTPUTLIST (serverid, serverresult
+        )
+        WRAPPER (json ds_datacatalog_elements)
+    );
+

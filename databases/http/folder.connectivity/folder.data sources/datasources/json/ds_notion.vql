@@ -1,0 +1,13 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON ds_notion
+    FOLDER = '/connectivity/data sources'
+    ROUTE HTTP 'http.ApacheHttpClientConnection,120000' POST '${databases.http.folder.connectivity.folder.data sources.datasources.json.ds_notion.ROUTE.HTTP.URL}'
+    HEADERS (
+        'Authorization'='Bearer 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', 
+        'Notion-Version'='2022-06-28', 
+        'Content-Type'='application/json'
+    )
+ AUTHENTICATION OFF
+    PROXY OFF
+    CHARSET = 'UTF-8';
+

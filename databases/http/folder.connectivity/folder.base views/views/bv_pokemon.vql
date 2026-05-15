@@ -1,0 +1,732 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JSON pokemon
+    FOLDER = '/connectivity/base views'
+    DATASOURCENAME=ds_pokemon
+    TUPLEROOT '/JSONFile/types'
+    ROUTE HTTP 'http.ApacheHttpClientConnection,120000' GET '${databases.http.folder.connectivity.folder.base views.views.json.pokemon.ROUTE.HTTP.URL}'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        abilities = 'abilities' : ARRAY OF (
+            abilities = 'abilities' : REGISTER OF (
+                ability = 'ability' : REGISTER OF (
+                    name = 'name' : 'java.lang.String',
+                    url = 'url' : 'java.lang.String'
+                ),
+                is_hidden = 'is_hidden' : 'java.lang.String',
+                slot = 'slot' : 'java.lang.Integer'
+            )
+        ),
+        base_experience = 'base_experience' : 'java.lang.Integer',
+        cries = 'cries' : REGISTER OF (
+            latest = 'latest' : 'java.lang.String',
+            legacy = 'legacy' : 'java.lang.String'
+        ),
+        forms = 'forms' : ARRAY OF (
+            forms = 'forms' : REGISTER OF (
+                name = 'name' : 'java.lang.String',
+                url = 'url' : 'java.lang.String'
+            )
+        ),
+        game_indices = 'game_indices' : ARRAY OF (
+            game_indices = 'game_indices' : REGISTER OF (
+                game_index = 'game_index' : 'java.lang.Integer',
+                version = 'version' : REGISTER OF (
+                    name = 'name' : 'java.lang.String',
+                    url = 'url' : 'java.lang.String'
+                )
+            )
+        ),
+        height = 'height' : 'java.lang.Integer',
+        held_items = 'held_items' : ARRAY OF (
+            held_items = 'held_items' : REGISTER OF (
+                item = 'item' : REGISTER OF (
+                    name = 'name' : 'java.lang.String',
+                    url = 'url' : 'java.lang.String'
+                ),
+                version_details = 'version_details' : ARRAY OF (
+                    version_details = 'version_details' : REGISTER OF (
+                        rarity = 'rarity' : 'java.lang.Integer',
+                        version = 'version' : REGISTER OF (
+                            name = 'name' : 'java.lang.String',
+                            url = 'url' : 'java.lang.String'
+                        )
+                    )
+                )
+            )
+        ),
+        id = 'id' : 'java.lang.Integer',
+        is_default = 'is_default' : 'java.lang.String',
+        location_area_encounters = 'location_area_encounters' : 'java.lang.String',
+        moves = 'moves' : ARRAY OF (
+            moves = 'moves' : REGISTER OF (
+                move = 'move' : REGISTER OF (
+                    name = 'name' : 'java.lang.String',
+                    url = 'url' : 'java.lang.String'
+                ),
+                version_group_details = 'version_group_details' : ARRAY OF (
+                    version_group_details = 'version_group_details' : REGISTER OF (
+                        level_learned_at = 'level_learned_at' : 'java.lang.Integer',
+                        move_learn_method = 'move_learn_method' : REGISTER OF (
+                            name = 'name' : 'java.lang.String',
+                            url = 'url' : 'java.lang.String'
+                        ),
+                        order = 'order' : 'java.lang.String',
+                        version_group = 'version_group' : REGISTER OF (
+                            name = 'name' : 'java.lang.String',
+                            url = 'url' : 'java.lang.String'
+                        )
+                    )
+                )
+            )
+        ),
+        name = 'name' : 'java.lang.String',
+        order = 'order' : 'java.lang.Integer',
+        past_abilities = 'past_abilities' : ARRAY OF (
+            past_abilities = 'past_abilities' : REGISTER OF (
+                abilities = 'abilities' : ARRAY OF (
+                    abilities = 'abilities' : REGISTER OF (
+                        ability = 'ability' : 'java.lang.String',
+                        is_hidden = 'is_hidden' : 'java.lang.String',
+                        slot = 'slot' : 'java.lang.Integer'
+                    )
+                ),
+                generation = 'generation' : REGISTER OF (
+                    name = 'name' : 'java.lang.String',
+                    url = 'url' : 'java.lang.String'
+                )
+            )
+        ),
+        past_types = 'past_types' : ARRAY OF (
+            past_types = 'past_types' : REGISTER OF (
+                field_0 = 'field_0' : 'java.lang.String'
+            )
+        ),
+        species = 'species' : REGISTER OF (
+            name = 'name' : 'java.lang.String',
+            url = 'url' : 'java.lang.String'
+        ),
+        sprites = 'sprites' : REGISTER OF (
+            back_default = 'back_default' : 'java.lang.String',
+            back_female = 'back_female' : 'java.lang.String',
+            back_shiny = 'back_shiny' : 'java.lang.String',
+            back_shiny_female = 'back_shiny_female' : 'java.lang.String',
+            front_default = 'front_default' : 'java.lang.String',
+            front_female = 'front_female' : 'java.lang.String',
+            front_shiny = 'front_shiny' : 'java.lang.String',
+            front_shiny_female = 'front_shiny_female' : 'java.lang.String',
+            other = 'other' : REGISTER OF (
+                dream_world = 'dream_world' : REGISTER OF (
+                    front_default = 'front_default' : 'java.lang.String',
+                    front_female = 'front_female' : 'java.lang.String'
+                ),
+                home = 'home' : REGISTER OF (
+                    front_default = 'front_default' : 'java.lang.String',
+                    front_female = 'front_female' : 'java.lang.String',
+                    front_shiny = 'front_shiny' : 'java.lang.String',
+                    front_shiny_female = 'front_shiny_female' : 'java.lang.String'
+                ),
+                officialartwork_0 = 'official-artwork' : REGISTER OF (
+                    front_default = 'front_default' : 'java.lang.String',
+                    front_shiny = 'front_shiny' : 'java.lang.String'
+                ),
+                showdown = 'showdown' : REGISTER OF (
+                    back_default = 'back_default' : 'java.lang.String',
+                    back_female = 'back_female' : 'java.lang.String',
+                    back_shiny = 'back_shiny' : 'java.lang.String',
+                    back_shiny_female = 'back_shiny_female' : 'java.lang.String',
+                    front_default = 'front_default' : 'java.lang.String',
+                    front_female = 'front_female' : 'java.lang.String',
+                    front_shiny = 'front_shiny' : 'java.lang.String',
+                    front_shiny_female = 'front_shiny_female' : 'java.lang.String'
+                )
+            ),
+            versions = 'versions' : REGISTER OF (
+                generationi_0 = 'generation-i' : REGISTER OF (
+                    redblue_0 = 'red-blue' : REGISTER OF (
+                        back_default = 'back_default' : 'java.lang.String',
+                        back_gray = 'back_gray' : 'java.lang.String',
+                        back_transparent = 'back_transparent' : 'java.lang.String',
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_gray = 'front_gray' : 'java.lang.String',
+                        front_transparent = 'front_transparent' : 'java.lang.String'
+                    ),
+                    yellow = 'yellow' : REGISTER OF (
+                        back_default = 'back_default' : 'java.lang.String',
+                        back_gray = 'back_gray' : 'java.lang.String',
+                        back_transparent = 'back_transparent' : 'java.lang.String',
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_gray = 'front_gray' : 'java.lang.String',
+                        front_transparent = 'front_transparent' : 'java.lang.String'
+                    )
+                ),
+                generationii_0 = 'generation-ii' : REGISTER OF (
+                    crystal = 'crystal' : REGISTER OF (
+                        back_default = 'back_default' : 'java.lang.String',
+                        back_shiny = 'back_shiny' : 'java.lang.String',
+                        back_shiny_transparent = 'back_shiny_transparent' : 'java.lang.String',
+                        back_transparent = 'back_transparent' : 'java.lang.String',
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String',
+                        front_shiny_transparent = 'front_shiny_transparent' : 'java.lang.String',
+                        front_transparent = 'front_transparent' : 'java.lang.String'
+                    ),
+                    gold = 'gold' : REGISTER OF (
+                        back_default = 'back_default' : 'java.lang.String',
+                        back_shiny = 'back_shiny' : 'java.lang.String',
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String',
+                        front_transparent = 'front_transparent' : 'java.lang.String'
+                    ),
+                    silver = 'silver' : REGISTER OF (
+                        back_default = 'back_default' : 'java.lang.String',
+                        back_shiny = 'back_shiny' : 'java.lang.String',
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String',
+                        front_transparent = 'front_transparent' : 'java.lang.String'
+                    )
+                ),
+                generationiii_0 = 'generation-iii' : REGISTER OF (
+                    emerald = 'emerald' : REGISTER OF (
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String'
+                    ),
+                    fireredleafgreen_0 = 'firered-leafgreen' : REGISTER OF (
+                        back_default = 'back_default' : 'java.lang.String',
+                        back_shiny = 'back_shiny' : 'java.lang.String',
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String'
+                    ),
+                    rubysapphire_0 = 'ruby-sapphire' : REGISTER OF (
+                        back_default = 'back_default' : 'java.lang.String',
+                        back_shiny = 'back_shiny' : 'java.lang.String',
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String'
+                    )
+                ),
+                generationiv_0 = 'generation-iv' : REGISTER OF (
+                    diamondpearl_0 = 'diamond-pearl' : REGISTER OF (
+                        back_default = 'back_default' : 'java.lang.String',
+                        back_female = 'back_female' : 'java.lang.String',
+                        back_shiny = 'back_shiny' : 'java.lang.String',
+                        back_shiny_female = 'back_shiny_female' : 'java.lang.String',
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_female = 'front_female' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String',
+                        front_shiny_female = 'front_shiny_female' : 'java.lang.String'
+                    ),
+                    heartgoldsoulsilver_0 = 'heartgold-soulsilver' : REGISTER OF (
+                        back_default = 'back_default' : 'java.lang.String',
+                        back_female = 'back_female' : 'java.lang.String',
+                        back_shiny = 'back_shiny' : 'java.lang.String',
+                        back_shiny_female = 'back_shiny_female' : 'java.lang.String',
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_female = 'front_female' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String',
+                        front_shiny_female = 'front_shiny_female' : 'java.lang.String'
+                    ),
+                    platinum = 'platinum' : REGISTER OF (
+                        back_default = 'back_default' : 'java.lang.String',
+                        back_female = 'back_female' : 'java.lang.String',
+                        back_shiny = 'back_shiny' : 'java.lang.String',
+                        back_shiny_female = 'back_shiny_female' : 'java.lang.String',
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_female = 'front_female' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String',
+                        front_shiny_female = 'front_shiny_female' : 'java.lang.String'
+                    )
+                ),
+                generationix_0 = 'generation-ix' : REGISTER OF (
+                    scarletviolet_0 = 'scarlet-violet' : REGISTER OF (
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_female = 'front_female' : 'java.lang.String'
+                    )
+                ),
+                generationv_0 = 'generation-v' : REGISTER OF (
+                    blackwhite_0 = 'black-white' : REGISTER OF (
+                        animated = 'animated' : REGISTER OF (
+                            back_default = 'back_default' : 'java.lang.String',
+                            back_female = 'back_female' : 'java.lang.String',
+                            back_shiny = 'back_shiny' : 'java.lang.String',
+                            back_shiny_female = 'back_shiny_female' : 'java.lang.String',
+                            front_default = 'front_default' : 'java.lang.String',
+                            front_female = 'front_female' : 'java.lang.String',
+                            front_shiny = 'front_shiny' : 'java.lang.String',
+                            front_shiny_female = 'front_shiny_female' : 'java.lang.String'
+                        ),
+                        back_default = 'back_default' : 'java.lang.String',
+                        back_female = 'back_female' : 'java.lang.String',
+                        back_shiny = 'back_shiny' : 'java.lang.String',
+                        back_shiny_female = 'back_shiny_female' : 'java.lang.String',
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_female = 'front_female' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String',
+                        front_shiny_female = 'front_shiny_female' : 'java.lang.String'
+                    )
+                ),
+                generationvi_0 = 'generation-vi' : REGISTER OF (
+                    omegarubyalphasapphire_0 = 'omegaruby-alphasapphire' : REGISTER OF (
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_female = 'front_female' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String',
+                        front_shiny_female = 'front_shiny_female' : 'java.lang.String'
+                    ),
+                    xy_0 = 'x-y' : REGISTER OF (
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_female = 'front_female' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String',
+                        front_shiny_female = 'front_shiny_female' : 'java.lang.String'
+                    )
+                ),
+                generationvii_0 = 'generation-vii' : REGISTER OF (
+                    icons = 'icons' : REGISTER OF (
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_female = 'front_female' : 'java.lang.String'
+                    ),
+                    ultrasunultramoon_0 = 'ultra-sun-ultra-moon' : REGISTER OF (
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_female = 'front_female' : 'java.lang.String',
+                        front_shiny = 'front_shiny' : 'java.lang.String',
+                        front_shiny_female = 'front_shiny_female' : 'java.lang.String'
+                    )
+                ),
+                generationviii_0 = 'generation-viii' : REGISTER OF (
+                    brilliantdiamondshiningpearl_0 = 'brilliant-diamond-shining-pearl' : REGISTER OF (
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_female = 'front_female' : 'java.lang.String'
+                    ),
+                    icons = 'icons' : REGISTER OF (
+                        front_default = 'front_default' : 'java.lang.String',
+                        front_female = 'front_female' : 'java.lang.String'
+                    )
+                )
+            )
+        ),
+        stats = 'stats' : ARRAY OF (
+            stats = 'stats' : REGISTER OF (
+                base_stat = 'base_stat' : 'java.lang.Integer',
+                effort = 'effort' : 'java.lang.Integer',
+                stat = 'stat' : REGISTER OF (
+                    name = 'name' : 'java.lang.String',
+                    url = 'url' : 'java.lang.String'
+                )
+            )
+        ),
+        slot = 'JSONFile.types.slot' : 'java.lang.Integer',
+        type = 'JSONFile.types.type' : REGISTER OF (
+            name = 'name' : 'java.lang.String',
+            url = 'url' : 'java.lang.String'
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE pokemon_abilities_abilities_ability AS REGISTER OF (name:text, url:text);
+
+CREATE OR REPLACE TYPE pokemon_abilities_abilities AS REGISTER OF (ability:pokemon_abilities_abilities_ability, is_hidden:text, slot:int);
+
+CREATE OR REPLACE TYPE pokemon_abilities AS ARRAY OF pokemon_abilities_abilities;
+
+CREATE OR REPLACE TYPE pokemon_cries AS REGISTER OF (latest:text, legacy:text);
+
+CREATE OR REPLACE TYPE pokemon_forms_forms AS REGISTER OF (name:text, url:text);
+
+CREATE OR REPLACE TYPE pokemon_forms AS ARRAY OF pokemon_forms_forms;
+
+CREATE OR REPLACE TYPE pokemon_game_indices_game_indices_version AS REGISTER OF (name:text, url:text);
+
+CREATE OR REPLACE TYPE pokemon_game_indices_game_indices AS REGISTER OF (game_index:int, version:pokemon_game_indices_game_indices_version);
+
+CREATE OR REPLACE TYPE pokemon_game_indices AS ARRAY OF pokemon_game_indices_game_indices;
+
+CREATE OR REPLACE TYPE pokemon_held_items_held_items_item AS REGISTER OF (name:text, url:text);
+
+CREATE OR REPLACE TYPE pokemon_held_items_held_items_version_details_version_details_version AS REGISTER OF (name:text, url:text);
+
+CREATE OR REPLACE TYPE pokemon_held_items_held_items_version_details_version_details AS REGISTER OF (rarity:int, version:pokemon_held_items_held_items_version_details_version_details_version);
+
+CREATE OR REPLACE TYPE pokemon_held_items_held_items_version_details AS ARRAY OF pokemon_held_items_held_items_version_details_version_details;
+
+CREATE OR REPLACE TYPE pokemon_held_items_held_items AS REGISTER OF (item:pokemon_held_items_held_items_item, version_details:pokemon_held_items_held_items_version_details);
+
+CREATE OR REPLACE TYPE pokemon_held_items AS ARRAY OF pokemon_held_items_held_items;
+
+CREATE OR REPLACE TYPE pokemon_moves_moves_move AS REGISTER OF (name:text, url:text);
+
+CREATE OR REPLACE TYPE pokemon_moves_moves_version_group_details_version_group_details_move_learn_method AS REGISTER OF (name:text, url:text);
+
+CREATE OR REPLACE TYPE pokemon_moves_moves_version_group_details_version_group_details_version_group AS REGISTER OF (name:text, url:text);
+
+CREATE OR REPLACE TYPE pokemon_moves_moves_version_group_details_version_group_details AS REGISTER OF (level_learned_at:int, move_learn_method:pokemon_moves_moves_version_group_details_version_group_details_move_learn_method, order:text, version_group:pokemon_moves_moves_version_group_details_version_group_details_version_group);
+
+CREATE OR REPLACE TYPE pokemon_moves_moves_version_group_details AS ARRAY OF pokemon_moves_moves_version_group_details_version_group_details;
+
+CREATE OR REPLACE TYPE pokemon_moves_moves AS REGISTER OF (move:pokemon_moves_moves_move, version_group_details:pokemon_moves_moves_version_group_details);
+
+CREATE OR REPLACE TYPE pokemon_moves AS ARRAY OF pokemon_moves_moves;
+
+CREATE OR REPLACE TYPE pokemon_past_abilities_past_abilities_abilities_abilities AS REGISTER OF (ability:text, is_hidden:text, slot:int);
+
+CREATE OR REPLACE TYPE pokemon_past_abilities_past_abilities_abilities AS ARRAY OF pokemon_past_abilities_past_abilities_abilities_abilities;
+
+CREATE OR REPLACE TYPE pokemon_past_abilities_past_abilities_generation AS REGISTER OF (name:text, url:text);
+
+CREATE OR REPLACE TYPE pokemon_past_abilities_past_abilities AS REGISTER OF (abilities:pokemon_past_abilities_past_abilities_abilities, generation:pokemon_past_abilities_past_abilities_generation);
+
+CREATE OR REPLACE TYPE pokemon_past_abilities AS ARRAY OF pokemon_past_abilities_past_abilities;
+
+CREATE OR REPLACE TYPE pokemon_past_types_past_types AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE pokemon_past_types AS ARRAY OF pokemon_past_types_past_types;
+
+CREATE OR REPLACE TYPE pokemon_species AS REGISTER OF (name:text, url:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_other_dream_world AS REGISTER OF (front_default:text, front_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_other_home AS REGISTER OF (front_default:text, front_female:text, front_shiny:text, front_shiny_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_other_officialartwork_0 AS REGISTER OF (front_default:text, front_shiny:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_other_showdown AS REGISTER OF (back_default:text, back_female:text, back_shiny:text, back_shiny_female:text, front_default:text, front_female:text, front_shiny:text, front_shiny_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_other AS REGISTER OF (dream_world:pokemon_sprites_other_dream_world, home:pokemon_sprites_other_home, officialartwork_0:pokemon_sprites_other_officialartwork_0, showdown:pokemon_sprites_other_showdown);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationi_0_redblue_0 AS REGISTER OF (back_default:text, back_gray:text, back_transparent:text, front_default:text, front_gray:text, front_transparent:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationi_0_yellow AS REGISTER OF (back_default:text, back_gray:text, back_transparent:text, front_default:text, front_gray:text, front_transparent:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationi_0 AS REGISTER OF (redblue_0:pokemon_sprites_versions_generationi_0_redblue_0, yellow:pokemon_sprites_versions_generationi_0_yellow);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationii_0_crystal AS REGISTER OF (back_default:text, back_shiny:text, back_shiny_transparent:text, back_transparent:text, front_default:text, front_shiny:text, front_shiny_transparent:text, front_transparent:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationii_0_gold AS REGISTER OF (back_default:text, back_shiny:text, front_default:text, front_shiny:text, front_transparent:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationii_0_silver AS REGISTER OF (back_default:text, back_shiny:text, front_default:text, front_shiny:text, front_transparent:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationii_0 AS REGISTER OF (crystal:pokemon_sprites_versions_generationii_0_crystal, gold:pokemon_sprites_versions_generationii_0_gold, silver:pokemon_sprites_versions_generationii_0_silver);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationiii_0_emerald AS REGISTER OF (front_default:text, front_shiny:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationiii_0_fireredleafgreen_0 AS REGISTER OF (back_default:text, back_shiny:text, front_default:text, front_shiny:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationiii_0_rubysapphire_0 AS REGISTER OF (back_default:text, back_shiny:text, front_default:text, front_shiny:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationiii_0 AS REGISTER OF (emerald:pokemon_sprites_versions_generationiii_0_emerald, fireredleafgreen_0:pokemon_sprites_versions_generationiii_0_fireredleafgreen_0, rubysapphire_0:pokemon_sprites_versions_generationiii_0_rubysapphire_0);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationiv_0_diamondpearl_0 AS REGISTER OF (back_default:text, back_female:text, back_shiny:text, back_shiny_female:text, front_default:text, front_female:text, front_shiny:text, front_shiny_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationiv_0_heartgoldsoulsilver_0 AS REGISTER OF (back_default:text, back_female:text, back_shiny:text, back_shiny_female:text, front_default:text, front_female:text, front_shiny:text, front_shiny_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationiv_0_platinum AS REGISTER OF (back_default:text, back_female:text, back_shiny:text, back_shiny_female:text, front_default:text, front_female:text, front_shiny:text, front_shiny_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationiv_0 AS REGISTER OF (diamondpearl_0:pokemon_sprites_versions_generationiv_0_diamondpearl_0, heartgoldsoulsilver_0:pokemon_sprites_versions_generationiv_0_heartgoldsoulsilver_0, platinum:pokemon_sprites_versions_generationiv_0_platinum);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationix_0_scarletviolet_0 AS REGISTER OF (front_default:text, front_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationix_0 AS REGISTER OF (scarletviolet_0:pokemon_sprites_versions_generationix_0_scarletviolet_0);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationv_0_blackwhite_0_animated AS REGISTER OF (back_default:text, back_female:text, back_shiny:text, back_shiny_female:text, front_default:text, front_female:text, front_shiny:text, front_shiny_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationv_0_blackwhite_0 AS REGISTER OF (animated:pokemon_sprites_versions_generationv_0_blackwhite_0_animated, back_default:text, back_female:text, back_shiny:text, back_shiny_female:text, front_default:text, front_female:text, front_shiny:text, front_shiny_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationv_0 AS REGISTER OF (blackwhite_0:pokemon_sprites_versions_generationv_0_blackwhite_0);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationvi_0_omegarubyalphasapphire_0 AS REGISTER OF (front_default:text, front_female:text, front_shiny:text, front_shiny_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationvi_0_xy_0 AS REGISTER OF (front_default:text, front_female:text, front_shiny:text, front_shiny_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationvi_0 AS REGISTER OF (omegarubyalphasapphire_0:pokemon_sprites_versions_generationvi_0_omegarubyalphasapphire_0, xy_0:pokemon_sprites_versions_generationvi_0_xy_0);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationvii_0_icons AS REGISTER OF (front_default:text, front_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationvii_0_ultrasunultramoon_0 AS REGISTER OF (front_default:text, front_female:text, front_shiny:text, front_shiny_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationvii_0 AS REGISTER OF (icons:pokemon_sprites_versions_generationvii_0_icons, ultrasunultramoon_0:pokemon_sprites_versions_generationvii_0_ultrasunultramoon_0);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationviii_0_brilliantdiamondshiningpearl_0 AS REGISTER OF (front_default:text, front_female:text);
+
+CREATE OR REPLACE TYPE pokemon_sprites_versions_generationviii_0_icons AS REGISTER OF (front_default:text, front_female:text);
+
+CREATE OR REPLACE TYPE "pokemon_sprites_versions_generationviii_0_6229f26b-23bd-4ff4-9dcc-765f4e65a96a" AS REGISTER OF (brilliantdiamondshiningpearl_0:pokemon_sprites_versions_generationviii_0_brilliantdiamondshiningpearl_0, icons:pokemon_sprites_versions_generationviii_0_icons);
+
+CREATE OR REPLACE TYPE "pokemon_sprites_versions_4aee2d99-f994-4389-8364-a5f5ad8dcb8d" AS REGISTER OF (generationi_0:pokemon_sprites_versions_generationi_0, generationii_0:pokemon_sprites_versions_generationii_0, generationiii_0:pokemon_sprites_versions_generationiii_0, generationiv_0:pokemon_sprites_versions_generationiv_0, generationix_0:pokemon_sprites_versions_generationix_0, generationv_0:pokemon_sprites_versions_generationv_0, generationvi_0:pokemon_sprites_versions_generationvi_0, generationvii_0:pokemon_sprites_versions_generationvii_0, generationviii_0:"pokemon_sprites_versions_generationviii_0_6229f26b-23bd-4ff4-9dcc-765f4e65a96a");
+
+CREATE OR REPLACE TYPE "pokemon_sprites_3f993b6b-8cd4-4f56-aa29-a1854d9d4c5b" AS REGISTER OF (back_default:text, back_female:text, back_shiny:text, back_shiny_female:text, front_default:text, front_female:text, front_shiny:text, front_shiny_female:text, other:pokemon_sprites_other, versions:"pokemon_sprites_versions_4aee2d99-f994-4389-8364-a5f5ad8dcb8d");
+
+CREATE OR REPLACE TYPE pokemon_stats_stats_stat AS REGISTER OF (name:text, url:text);
+
+CREATE OR REPLACE TYPE pokemon_stats_stats AS REGISTER OF (base_stat:int, effort:int, stat:pokemon_stats_stats_stat);
+
+CREATE OR REPLACE TYPE pokemon_stats AS ARRAY OF pokemon_stats_stats;
+
+CREATE OR REPLACE TABLE bv_pokemon I18N us_pst (
+        abilities:pokemon_abilities,
+        base_experience:int,
+        cries:pokemon_cries,
+        forms:pokemon_forms,
+        game_indices:pokemon_game_indices,
+        height:int,
+        held_items:pokemon_held_items,
+        id:int,
+        is_default:text,
+        location_area_encounters:text,
+        moves:pokemon_moves,
+        name:text,
+        order:int,
+        past_abilities:pokemon_past_abilities,
+        past_types:pokemon_past_types,
+        species:pokemon_species,
+        sprites:"pokemon_sprites_3f993b6b-8cd4-4f56-aa29-a1854d9d4c5b",
+        stats:pokemon_stats,
+        slot:int,
+        type:pokemon_species
+    )
+    FOLDER = '/connectivity/base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD pokemon(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD abilities NOS ZERO ()
+             ADD abilities NOS ZERO ()
+             ADD abilities.ability NOS ZERO ()
+             ADD abilities.ability.name NOS ZERO ()
+             ADD abilities.ability.url NOS ZERO ()
+             ADD abilities.is_hidden NOS ZERO ()
+             ADD abilities.slot NOS ZERO ()
+             ADD base_experience NOS ZERO ()
+             ADD cries NOS ZERO ()
+             ADD cries.latest NOS ZERO ()
+             ADD cries.legacy NOS ZERO ()
+             ADD forms NOS ZERO ()
+             ADD forms NOS ZERO ()
+             ADD forms.name NOS ZERO ()
+             ADD forms.url NOS ZERO ()
+             ADD game_indices NOS ZERO ()
+             ADD game_indices NOS ZERO ()
+             ADD game_indices.game_index NOS ZERO ()
+             ADD game_indices.version NOS ZERO ()
+             ADD game_indices.version.name NOS ZERO ()
+             ADD game_indices.version.url NOS ZERO ()
+             ADD height NOS ZERO ()
+             ADD held_items NOS ZERO ()
+             ADD held_items NOS ZERO ()
+             ADD held_items.item NOS ZERO ()
+             ADD held_items.item.name NOS ZERO ()
+             ADD held_items.item.url NOS ZERO ()
+             ADD held_items.version_details NOS ZERO ()
+             ADD held_items.version_details NOS ZERO ()
+             ADD held_items.version_details.rarity NOS ZERO ()
+             ADD held_items.version_details.version NOS ZERO ()
+             ADD held_items.version_details.version.name NOS ZERO ()
+             ADD held_items.version_details.version.url NOS ZERO ()
+             ADD id NOS ZERO ()
+             ADD is_default NOS ZERO ()
+             ADD location_area_encounters NOS ZERO ()
+             ADD moves NOS ZERO ()
+             ADD moves NOS ZERO ()
+             ADD moves.move NOS ZERO ()
+             ADD moves.move.name NOS ZERO ()
+             ADD moves.move.url NOS ZERO ()
+             ADD moves.version_group_details NOS ZERO ()
+             ADD moves.version_group_details NOS ZERO ()
+             ADD moves.version_group_details.level_learned_at NOS ZERO ()
+             ADD moves.version_group_details.move_learn_method NOS ZERO ()
+             ADD moves.version_group_details.move_learn_method.name NOS ZERO ()
+             ADD moves.version_group_details.move_learn_method.url NOS ZERO ()
+             ADD moves.version_group_details.order NOS ZERO ()
+             ADD moves.version_group_details.version_group NOS ZERO ()
+             ADD moves.version_group_details.version_group.name NOS ZERO ()
+             ADD moves.version_group_details.version_group.url NOS ZERO ()
+             ADD name NOS ZERO ()
+             ADD order NOS ZERO ()
+             ADD past_abilities NOS ZERO ()
+             ADD past_abilities NOS ZERO ()
+             ADD past_abilities.abilities NOS ZERO ()
+             ADD past_abilities.abilities NOS ZERO ()
+             ADD past_abilities.abilities.ability NOS ZERO ()
+             ADD past_abilities.abilities.is_hidden NOS ZERO ()
+             ADD past_abilities.abilities.slot NOS ZERO ()
+             ADD past_abilities.generation NOS ZERO ()
+             ADD past_abilities.generation.name NOS ZERO ()
+             ADD past_abilities.generation.url NOS ZERO ()
+             ADD past_types NOS ZERO ()
+             ADD past_types NOS ZERO ()
+             ADD past_types.field_0 NOS ZERO ()
+             ADD species NOS ZERO ()
+             ADD species.name NOS ZERO ()
+             ADD species.url NOS ZERO ()
+             ADD sprites NOS ZERO ()
+             ADD sprites.back_default NOS ZERO ()
+             ADD sprites.back_female NOS ZERO ()
+             ADD sprites.back_shiny NOS ZERO ()
+             ADD sprites.back_shiny_female NOS ZERO ()
+             ADD sprites.front_default NOS ZERO ()
+             ADD sprites.front_female NOS ZERO ()
+             ADD sprites.front_shiny NOS ZERO ()
+             ADD sprites.front_shiny_female NOS ZERO ()
+             ADD sprites.other NOS ZERO ()
+             ADD sprites.other.dream_world NOS ZERO ()
+             ADD sprites.other.dream_world.front_default NOS ZERO ()
+             ADD sprites.other.dream_world.front_female NOS ZERO ()
+             ADD sprites.other.home NOS ZERO ()
+             ADD sprites.other.home.front_default NOS ZERO ()
+             ADD sprites.other.home.front_female NOS ZERO ()
+             ADD sprites.other.home.front_shiny NOS ZERO ()
+             ADD sprites.other.home.front_shiny_female NOS ZERO ()
+             ADD sprites.other.officialartwork_0 NOS ZERO ()
+             ADD sprites.other.officialartwork_0.front_default NOS ZERO ()
+             ADD sprites.other.officialartwork_0.front_shiny NOS ZERO ()
+             ADD sprites.other.showdown NOS ZERO ()
+             ADD sprites.other.showdown.back_default NOS ZERO ()
+             ADD sprites.other.showdown.back_female NOS ZERO ()
+             ADD sprites.other.showdown.back_shiny NOS ZERO ()
+             ADD sprites.other.showdown.back_shiny_female NOS ZERO ()
+             ADD sprites.other.showdown.front_default NOS ZERO ()
+             ADD sprites.other.showdown.front_female NOS ZERO ()
+             ADD sprites.other.showdown.front_shiny NOS ZERO ()
+             ADD sprites.other.showdown.front_shiny_female NOS ZERO ()
+             ADD sprites.versions NOS ZERO ()
+             ADD sprites.versions.generationi_0 NOS ZERO ()
+             ADD sprites.versions.generationi_0.redblue_0 NOS ZERO ()
+             ADD sprites.versions.generationi_0.redblue_0.back_default NOS ZERO ()
+             ADD sprites.versions.generationi_0.redblue_0.back_gray NOS ZERO ()
+             ADD sprites.versions.generationi_0.redblue_0.back_transparent NOS ZERO ()
+             ADD sprites.versions.generationi_0.redblue_0.front_default NOS ZERO ()
+             ADD sprites.versions.generationi_0.redblue_0.front_gray NOS ZERO ()
+             ADD sprites.versions.generationi_0.redblue_0.front_transparent NOS ZERO ()
+             ADD sprites.versions.generationi_0.yellow NOS ZERO ()
+             ADD sprites.versions.generationi_0.yellow.back_default NOS ZERO ()
+             ADD sprites.versions.generationi_0.yellow.back_gray NOS ZERO ()
+             ADD sprites.versions.generationi_0.yellow.back_transparent NOS ZERO ()
+             ADD sprites.versions.generationi_0.yellow.front_default NOS ZERO ()
+             ADD sprites.versions.generationi_0.yellow.front_gray NOS ZERO ()
+             ADD sprites.versions.generationi_0.yellow.front_transparent NOS ZERO ()
+             ADD sprites.versions.generationii_0 NOS ZERO ()
+             ADD sprites.versions.generationii_0.crystal NOS ZERO ()
+             ADD sprites.versions.generationii_0.crystal.back_default NOS ZERO ()
+             ADD sprites.versions.generationii_0.crystal.back_shiny NOS ZERO ()
+             ADD sprites.versions.generationii_0.crystal.back_shiny_transparent NOS ZERO ()
+             ADD sprites.versions.generationii_0.crystal.back_transparent NOS ZERO ()
+             ADD sprites.versions.generationii_0.crystal.front_default NOS ZERO ()
+             ADD sprites.versions.generationii_0.crystal.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationii_0.crystal.front_shiny_transparent NOS ZERO ()
+             ADD sprites.versions.generationii_0.crystal.front_transparent NOS ZERO ()
+             ADD sprites.versions.generationii_0.gold NOS ZERO ()
+             ADD sprites.versions.generationii_0.gold.back_default NOS ZERO ()
+             ADD sprites.versions.generationii_0.gold.back_shiny NOS ZERO ()
+             ADD sprites.versions.generationii_0.gold.front_default NOS ZERO ()
+             ADD sprites.versions.generationii_0.gold.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationii_0.gold.front_transparent NOS ZERO ()
+             ADD sprites.versions.generationii_0.silver NOS ZERO ()
+             ADD sprites.versions.generationii_0.silver.back_default NOS ZERO ()
+             ADD sprites.versions.generationii_0.silver.back_shiny NOS ZERO ()
+             ADD sprites.versions.generationii_0.silver.front_default NOS ZERO ()
+             ADD sprites.versions.generationii_0.silver.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationii_0.silver.front_transparent NOS ZERO ()
+             ADD sprites.versions.generationiii_0 NOS ZERO ()
+             ADD sprites.versions.generationiii_0.emerald NOS ZERO ()
+             ADD sprites.versions.generationiii_0.emerald.front_default NOS ZERO ()
+             ADD sprites.versions.generationiii_0.emerald.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationiii_0.fireredleafgreen_0 NOS ZERO ()
+             ADD sprites.versions.generationiii_0.fireredleafgreen_0.back_default NOS ZERO ()
+             ADD sprites.versions.generationiii_0.fireredleafgreen_0.back_shiny NOS ZERO ()
+             ADD sprites.versions.generationiii_0.fireredleafgreen_0.front_default NOS ZERO ()
+             ADD sprites.versions.generationiii_0.fireredleafgreen_0.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationiii_0.rubysapphire_0 NOS ZERO ()
+             ADD sprites.versions.generationiii_0.rubysapphire_0.back_default NOS ZERO ()
+             ADD sprites.versions.generationiii_0.rubysapphire_0.back_shiny NOS ZERO ()
+             ADD sprites.versions.generationiii_0.rubysapphire_0.front_default NOS ZERO ()
+             ADD sprites.versions.generationiii_0.rubysapphire_0.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationiv_0 NOS ZERO ()
+             ADD sprites.versions.generationiv_0.diamondpearl_0 NOS ZERO ()
+             ADD sprites.versions.generationiv_0.diamondpearl_0.back_default NOS ZERO ()
+             ADD sprites.versions.generationiv_0.diamondpearl_0.back_female NOS ZERO ()
+             ADD sprites.versions.generationiv_0.diamondpearl_0.back_shiny NOS ZERO ()
+             ADD sprites.versions.generationiv_0.diamondpearl_0.back_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationiv_0.diamondpearl_0.front_default NOS ZERO ()
+             ADD sprites.versions.generationiv_0.diamondpearl_0.front_female NOS ZERO ()
+             ADD sprites.versions.generationiv_0.diamondpearl_0.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationiv_0.diamondpearl_0.front_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationiv_0.heartgoldsoulsilver_0 NOS ZERO ()
+             ADD sprites.versions.generationiv_0.heartgoldsoulsilver_0.back_default NOS ZERO ()
+             ADD sprites.versions.generationiv_0.heartgoldsoulsilver_0.back_female NOS ZERO ()
+             ADD sprites.versions.generationiv_0.heartgoldsoulsilver_0.back_shiny NOS ZERO ()
+             ADD sprites.versions.generationiv_0.heartgoldsoulsilver_0.back_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationiv_0.heartgoldsoulsilver_0.front_default NOS ZERO ()
+             ADD sprites.versions.generationiv_0.heartgoldsoulsilver_0.front_female NOS ZERO ()
+             ADD sprites.versions.generationiv_0.heartgoldsoulsilver_0.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationiv_0.heartgoldsoulsilver_0.front_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationiv_0.platinum NOS ZERO ()
+             ADD sprites.versions.generationiv_0.platinum.back_default NOS ZERO ()
+             ADD sprites.versions.generationiv_0.platinum.back_female NOS ZERO ()
+             ADD sprites.versions.generationiv_0.platinum.back_shiny NOS ZERO ()
+             ADD sprites.versions.generationiv_0.platinum.back_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationiv_0.platinum.front_default NOS ZERO ()
+             ADD sprites.versions.generationiv_0.platinum.front_female NOS ZERO ()
+             ADD sprites.versions.generationiv_0.platinum.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationiv_0.platinum.front_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationix_0 NOS ZERO ()
+             ADD sprites.versions.generationix_0.scarletviolet_0 NOS ZERO ()
+             ADD sprites.versions.generationix_0.scarletviolet_0.front_default NOS ZERO ()
+             ADD sprites.versions.generationix_0.scarletviolet_0.front_female NOS ZERO ()
+             ADD sprites.versions.generationv_0 NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0 NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.animated NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.animated.back_default NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.animated.back_female NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.animated.back_shiny NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.animated.back_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.animated.front_default NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.animated.front_female NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.animated.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.animated.front_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.back_default NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.back_female NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.back_shiny NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.back_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.front_default NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.front_female NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationv_0.blackwhite_0.front_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationvi_0 NOS ZERO ()
+             ADD sprites.versions.generationvi_0.omegarubyalphasapphire_0 NOS ZERO ()
+             ADD sprites.versions.generationvi_0.omegarubyalphasapphire_0.front_default NOS ZERO ()
+             ADD sprites.versions.generationvi_0.omegarubyalphasapphire_0.front_female NOS ZERO ()
+             ADD sprites.versions.generationvi_0.omegarubyalphasapphire_0.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationvi_0.omegarubyalphasapphire_0.front_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationvi_0.xy_0 NOS ZERO ()
+             ADD sprites.versions.generationvi_0.xy_0.front_default NOS ZERO ()
+             ADD sprites.versions.generationvi_0.xy_0.front_female NOS ZERO ()
+             ADD sprites.versions.generationvi_0.xy_0.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationvi_0.xy_0.front_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationvii_0 NOS ZERO ()
+             ADD sprites.versions.generationvii_0.icons NOS ZERO ()
+             ADD sprites.versions.generationvii_0.icons.front_default NOS ZERO ()
+             ADD sprites.versions.generationvii_0.icons.front_female NOS ZERO ()
+             ADD sprites.versions.generationvii_0.ultrasunultramoon_0 NOS ZERO ()
+             ADD sprites.versions.generationvii_0.ultrasunultramoon_0.front_default NOS ZERO ()
+             ADD sprites.versions.generationvii_0.ultrasunultramoon_0.front_female NOS ZERO ()
+             ADD sprites.versions.generationvii_0.ultrasunultramoon_0.front_shiny NOS ZERO ()
+             ADD sprites.versions.generationvii_0.ultrasunultramoon_0.front_shiny_female NOS ZERO ()
+             ADD sprites.versions.generationviii_0 NOS ZERO ()
+             ADD sprites.versions.generationviii_0.brilliantdiamondshiningpearl_0 NOS ZERO ()
+             ADD sprites.versions.generationviii_0.brilliantdiamondshiningpearl_0.front_default NOS ZERO ()
+             ADD sprites.versions.generationviii_0.brilliantdiamondshiningpearl_0.front_female NOS ZERO ()
+             ADD sprites.versions.generationviii_0.icons NOS ZERO ()
+             ADD sprites.versions.generationviii_0.icons.front_default NOS ZERO ()
+             ADD sprites.versions.generationviii_0.icons.front_female NOS ZERO ()
+             ADD stats NOS ZERO ()
+             ADD stats NOS ZERO ()
+             ADD stats.base_stat NOS ZERO ()
+             ADD stats.effort NOS ZERO ()
+             ADD stats.stat NOS ZERO ()
+             ADD stats.stat.name NOS ZERO ()
+             ADD stats.stat.url NOS ZERO ()
+             ADD slot NOS ZERO ()
+             ADD type NOS ZERO ()
+             ADD type.name NOS ZERO ()
+             ADD type.url NOS ZERO ()
+        )
+        OUTPUTLIST (abilities, base_experience, cries, forms, game_indices, height, held_items, id, is_default, location_area_encounters, moves, name, order, past_abilities, past_types, slot, species, sprites, stats, type
+        )
+        WRAPPER (json pokemon)
+    );
+

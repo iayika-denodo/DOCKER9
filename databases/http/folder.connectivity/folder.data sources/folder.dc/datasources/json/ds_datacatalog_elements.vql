@@ -1,0 +1,17 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON ds_datacatalog_elements
+    FOLDER = '/connectivity/data sources/dc'
+    ROUTE HTTP 'http.ApacheHttpClientConnection,120000' POST '${databases.http.folder.connectivity.folder.data sources.folder.dc.datasources.json.ds_datacatalog_elements.ROUTE.HTTP.URL}'
+    POSTBODY '\{{
+  "proceedWithConflicts": "server_with_local_changes",
+  "allServers": "true"
+\}}'
+    MIME 'application/json'
+    HEADERS (
+        'Content-Type'='application/json'
+    )
+ AUTHENTICATION BASIC ( 
+      USER '${databases.http.folder.connectivity.folder.data sources.folder.dc.datasources.json.ds_datacatalog_elements.ROUTE.HTTP.USER}'
+      PASSWORD '${databases.http.folder.connectivity.folder.data sources.folder.dc.datasources.json.ds_datacatalog_elements.ROUTE.HTTP.PASSWORD}' ${databases.http.folder.connectivity.folder.data sources.folder.dc.datasources.json.ds_datacatalog_elements.ROUTE.HTTP.PASSWORD.ENCRYPTED} )
+    PROXY OFF;
+

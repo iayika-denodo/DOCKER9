@@ -1,0 +1,12 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE CUSTOM ds_ssh
+    FOLDER = '/connectivity/data sources'
+    CLASSNAME='com.denodo.connect.ssh.SSHWrapper'
+    JARS 'denodo-ssh-customwrapper'
+    PARAMETERS (
+      'Host' = '${databases.http.folder.connectivity.folder.data sources.datasources.custom.ds_ssh.Host}',
+      'Port' = ${databases.http.folder.connectivity.folder.data sources.datasources.custom.ds_ssh.Port},
+      'User' = '${databases.http.folder.connectivity.folder.data sources.datasources.custom.ds_ssh.User}',
+      'Password' = '${databases.http.folder.connectivity.folder.data sources.datasources.custom.ds_ssh.Password}' ${databases.http.folder.connectivity.folder.data sources.datasources.custom.ds_ssh.Password.encrypted}
+    );
+

@@ -1,0 +1,20 @@
+﻿CREATE OR REPLACE TABLE bv_custom_test I18N us_pst (
+        test:text (sourcetypeid = '12'),
+        other:int (sourcetypeid = '4'),
+        double_space:text (sourcetypeid = '12')
+    )
+    FOLDER = '/connectivity/base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_custom_test(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD test (any) OPT ANY
+             ADD other (any) OPT ANY
+             ADD double_space (any) OPT ANY
+        )
+        OUTPUTLIST (double_space, other, test
+        )
+        WRAPPER (custom ds_custom_test)
+    );
+

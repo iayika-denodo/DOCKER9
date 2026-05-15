@@ -1,0 +1,9 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF ds_test
+    FOLDER = '/connectivity/data sources'
+    ROUTE LOCAL 'LocalConnection' '${databases.http.folder.connectivity.folder.data sources.datasources.df.ds_test.ROUTE.LOCAL.PATH}' FILENAMEPATTERN = ''
+    CHARSET = 'UTF-8'
+    COLUMNDELIMITER = ','
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = TRUE;
+

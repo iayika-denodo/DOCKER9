@@ -1,0 +1,424 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JSON ds_notion
+    FOLDER = '/connectivity/base views'
+    DATASOURCENAME=ds_notion
+    TUPLEROOT '/JSONFile'
+    ROUTE HTTP 'http.ApacheHttpClientConnection,120000' POST '${databases.http.folder.connectivity.folder.base views.views.json.ds_notion.ROUTE.HTTP.URL}'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        object = 'object' : 'java.lang.String',
+        results = 'results' : ARRAY OF (
+            results = 'results' : REGISTER OF (
+                object = 'object' : 'java.lang.String',
+                id = 'id' : 'java.lang.String',
+                created_time = 'created_time' : 'java.lang.String',
+                last_edited_time = 'last_edited_time' : 'java.lang.String',
+                created_by = 'created_by' : REGISTER OF (
+                    object = 'object' : 'java.lang.String',
+                    id = 'id' : 'java.lang.String'
+                ),
+                last_edited_by = 'last_edited_by' : REGISTER OF (
+                    object = 'object' : 'java.lang.String',
+                    id = 'id' : 'java.lang.String'
+                ),
+                cover = 'cover' : 'java.lang.String',
+                icon = 'icon' : 'java.lang.String',
+                parent = 'parent' : REGISTER OF (
+                    type = 'type' : 'java.lang.String',
+                    database_id = 'database_id' : 'java.lang.String'
+                ),
+                in_trash = 'in_trash' : 'java.lang.String',
+                is_locked = 'is_locked' : 'java.lang.String',
+                properties = 'properties' : REGISTER OF (
+                    linkeditems_0 = 'Linked Items' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        relation = 'relation' : ARRAY OF (
+                            relation = 'relation' : REGISTER OF (
+                                field_0 = 'field_0' : 'java.lang.String'
+                            )
+                        ),
+                        has_more = 'has_more' : 'java.lang.String'
+                    ),
+                    countdown = 'Countdown' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        formula = 'formula' : REGISTER OF (
+                            type = 'type' : 'java.lang.String',
+                            string = 'string' : 'java.lang.String'
+                        )
+                    ),
+                    assignee = 'Assignee' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        people = 'people' : ARRAY OF (
+                            people = 'people' : REGISTER OF (
+                                field_0 = 'field_0' : 'java.lang.String'
+                            )
+                        )
+                    ),
+                    linkednotes_0 = 'Linked Notes' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        relation = 'relation' : ARRAY OF (
+                            relation = 'relation' : REGISTER OF (
+                                field_0 = 'field_0' : 'java.lang.String'
+                            )
+                        ),
+                        has_more = 'has_more' : 'java.lang.String'
+                    ),
+                    relatedtasks_0 = 'Related Tasks' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        relation = 'relation' : ARRAY OF (
+                            relation = 'relation' : REGISTER OF (
+                                field_0 = 'field_0' : 'java.lang.String'
+                            )
+                        ),
+                        has_more = 'has_more' : 'java.lang.String'
+                    ),
+                    location = 'Location' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        rich_text = 'rich_text' : ARRAY OF (
+                            rich_text = 'rich_text' : REGISTER OF (
+                                field_0 = 'field_0' : 'java.lang.String'
+                            )
+                        )
+                    ),
+                    extrainfo_0 = 'Extra Info' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        rich_text = 'rich_text' : ARRAY OF (
+                            rich_text = 'rich_text' : REGISTER OF (
+                                type = 'type' : 'java.lang.String',
+                                text = 'text' : REGISTER OF (
+                                    content = 'content' : 'java.lang.String',
+                                    link = 'link' : 'java.lang.String'
+                                ),
+                                annotations = 'annotations' : REGISTER OF (
+                                    bold = 'bold' : 'java.lang.String',
+                                    italic = 'italic' : 'java.lang.String',
+                                    strikethrough = 'strikethrough' : 'java.lang.String',
+                                    underline = 'underline' : 'java.lang.String',
+                                    code = 'code' : 'java.lang.String',
+                                    color = 'color' : 'java.lang.String'
+                                ),
+                                plain_text = 'plain_text' : 'java.lang.String',
+                                href = 'href' : 'java.lang.String'
+                            )
+                        )
+                    ),
+                    date = 'Date' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        date = 'date' : REGISTER OF (
+                            start = 'start' : 'java.lang.String',
+                            end = 'end' : 'java.lang.String',
+                            time_zone = 'time_zone' : 'java.lang.String'
+                        )
+                    ),
+                    type = 'Type' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        select_0 = 'select' : REGISTER OF (
+                            id = 'id' : 'java.lang.String',
+                            name = 'name' : 'java.lang.String',
+                            color = 'color' : 'java.lang.String'
+                        )
+                    ),
+                    status = 'Status' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        status = 'status' : REGISTER OF (
+                            id = 'id' : 'java.lang.String',
+                            name = 'name' : 'java.lang.String',
+                            color = 'color' : 'java.lang.String'
+                        )
+                    ),
+                    people = 'People' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        rich_text = 'rich_text' : ARRAY OF (
+                            rich_text = 'rich_text' : REGISTER OF (
+                                field_0 = 'field_0' : 'java.lang.String'
+                            )
+                        )
+                    ),
+                    name = 'Name' : REGISTER OF (
+                        id = 'id' : 'java.lang.String',
+                        type = 'type' : 'java.lang.String',
+                        title = 'title' : ARRAY OF (
+                            title = 'title' : REGISTER OF (
+                                type = 'type' : 'java.lang.String',
+                                text = 'text' : REGISTER OF (
+                                    content = 'content' : 'java.lang.String',
+                                    link = 'link' : 'java.lang.String'
+                                ),
+                                annotations = 'annotations' : REGISTER OF (
+                                    bold = 'bold' : 'java.lang.String',
+                                    italic = 'italic' : 'java.lang.String',
+                                    strikethrough = 'strikethrough' : 'java.lang.String',
+                                    underline = 'underline' : 'java.lang.String',
+                                    code = 'code' : 'java.lang.String',
+                                    color = 'color' : 'java.lang.String'
+                                ),
+                                plain_text = 'plain_text' : 'java.lang.String',
+                                href = 'href' : 'java.lang.String'
+                            )
+                        )
+                    )
+                ),
+                url = 'url' : 'java.lang.String',
+                public_url = 'public_url' : 'java.lang.String',
+                archived = 'archived' : 'java.lang.String'
+            )
+        ),
+        next_cursor = 'next_cursor' : 'java.lang.String',
+        has_more = 'has_more' : 'java.lang.String',
+        type = 'type' : 'java.lang.String',
+        page_or_database = 'page_or_database' : REGISTER OF (
+            field_0 = 'field_0' : 'java.lang.String'
+        ),
+        request_id = 'request_id' : 'java.lang.String'
+    )
+    );
+
+CREATE OR REPLACE TYPE ds_notion_results_results_created_by AS REGISTER OF (object:text, id:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_last_edited_by AS REGISTER OF (object:text, id:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_parent AS REGISTER OF (type:text, database_id:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_linkeditems_0_relation_relation AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_linkeditems_0_relation AS ARRAY OF ds_notion_results_results_properties_linkeditems_0_relation_relation;
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_linkeditems_0 AS REGISTER OF (id:text, type:text, relation:ds_notion_results_results_properties_linkeditems_0_relation, has_more:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_countdown_formula AS REGISTER OF (type:text, string:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_countdown AS REGISTER OF (id:text, type:text, formula:ds_notion_results_results_properties_countdown_formula);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_assignee_people_people AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_assignee_people AS ARRAY OF ds_notion_results_results_properties_assignee_people_people;
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_assignee AS REGISTER OF (id:text, type:text, people:ds_notion_results_results_properties_assignee_people);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_linkednotes_0_relation_relation AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_linkednotes_0_relation AS ARRAY OF ds_notion_results_results_properties_linkednotes_0_relation_relation;
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_linkednotes_0 AS REGISTER OF (id:text, type:text, relation:ds_notion_results_results_properties_linkednotes_0_relation, has_more:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_relatedtasks_0_relation_relation AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_relatedtasks_0_relation AS ARRAY OF ds_notion_results_results_properties_relatedtasks_0_relation_relation;
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_relatedtasks_0 AS REGISTER OF (id:text, type:text, relation:ds_notion_results_results_properties_relatedtasks_0_relation, has_more:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_location_rich_text_rich_text AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_location_rich_text AS ARRAY OF ds_notion_results_results_properties_location_rich_text_rich_text;
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_location AS REGISTER OF (id:text, type:text, rich_text:ds_notion_results_results_properties_location_rich_text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_extrainfo_0_rich_text_rich_text_text AS REGISTER OF (content:text, link:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_extrainfo_0_rich_text_rich_text_annotations AS REGISTER OF (bold:text, italic:text, strikethrough:text, underline:text, code:text, color:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_extrainfo_0_rich_text_rich_text AS REGISTER OF (type:text, text:ds_notion_results_results_properties_extrainfo_0_rich_text_rich_text_text, annotations:ds_notion_results_results_properties_extrainfo_0_rich_text_rich_text_annotations, plain_text:text, href:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_extrainfo_0_rich_text AS ARRAY OF ds_notion_results_results_properties_extrainfo_0_rich_text_rich_text;
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_extrainfo_0 AS REGISTER OF (id:text, type:text, rich_text:ds_notion_results_results_properties_extrainfo_0_rich_text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_date_date AS REGISTER OF (start:text, end:text, time_zone:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_date AS REGISTER OF (id:text, type:text, date:ds_notion_results_results_properties_date_date);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_type_select_0 AS REGISTER OF (id:text, name:text, color:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_type AS REGISTER OF (id:text, type:text, select_0:ds_notion_results_results_properties_type_select_0);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_status_status AS REGISTER OF (id:text, name:text, color:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_status AS REGISTER OF (id:text, type:text, status:ds_notion_results_results_properties_status_status);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_people_rich_text_rich_text AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_people_rich_text AS ARRAY OF ds_notion_results_results_properties_people_rich_text_rich_text;
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_people AS REGISTER OF (id:text, type:text, rich_text:ds_notion_results_results_properties_people_rich_text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_name_title_title_text AS REGISTER OF (content:text, link:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_name_title_title_annotations AS REGISTER OF (bold:text, italic:text, strikethrough:text, underline:text, code:text, color:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_name_title_title AS REGISTER OF (type:text, text:ds_notion_results_results_properties_name_title_title_text, annotations:ds_notion_results_results_properties_name_title_title_annotations, plain_text:text, href:text);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_name_title AS ARRAY OF ds_notion_results_results_properties_name_title_title;
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties_name AS REGISTER OF (id:text, type:text, title:ds_notion_results_results_properties_name_title);
+
+CREATE OR REPLACE TYPE ds_notion_results_results_properties AS REGISTER OF (linkeditems_0:ds_notion_results_results_properties_linkeditems_0, countdown:ds_notion_results_results_properties_countdown, assignee:ds_notion_results_results_properties_assignee, linkednotes_0:ds_notion_results_results_properties_linkednotes_0, relatedtasks_0:ds_notion_results_results_properties_relatedtasks_0, location:ds_notion_results_results_properties_location, extrainfo_0:ds_notion_results_results_properties_extrainfo_0, date:ds_notion_results_results_properties_date, type:ds_notion_results_results_properties_type, status:ds_notion_results_results_properties_status, people:ds_notion_results_results_properties_people, name:ds_notion_results_results_properties_name);
+
+CREATE OR REPLACE TYPE ds_notion_results_results AS REGISTER OF (object:text, id:text, created_time:text, last_edited_time:text, created_by:ds_notion_results_results_created_by, last_edited_by:ds_notion_results_results_last_edited_by, cover:text, icon:text, parent:ds_notion_results_results_parent, in_trash:text, is_locked:text, properties:ds_notion_results_results_properties, url:text, public_url:text, archived:text);
+
+CREATE OR REPLACE TYPE ds_notion_results AS ARRAY OF ds_notion_results_results;
+
+CREATE OR REPLACE TYPE ds_notion_page_or_database AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TABLE bv_notion I18N us_pst (
+        object:text,
+        results:ds_notion_results,
+        next_cursor:text,
+        has_more:text,
+        type:text,
+        page_or_database:ds_notion_page_or_database,
+        request_id:text
+    )
+    FOLDER = '/connectivity/base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_notion(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD object NOS ZERO ()
+             ADD results NOS ZERO ()
+             ADD results NOS ZERO ()
+             ADD results.object NOS ZERO ()
+             ADD results.id NOS ZERO ()
+             ADD results.created_time NOS ZERO ()
+             ADD results.last_edited_time NOS ZERO ()
+             ADD results.created_by NOS ZERO ()
+             ADD results.created_by.object NOS ZERO ()
+             ADD results.created_by.id NOS ZERO ()
+             ADD results.last_edited_by NOS ZERO ()
+             ADD results.last_edited_by.object NOS ZERO ()
+             ADD results.last_edited_by.id NOS ZERO ()
+             ADD results.cover NOS ZERO ()
+             ADD results.icon NOS ZERO ()
+             ADD results.parent NOS ZERO ()
+             ADD results.parent.type NOS ZERO ()
+             ADD results.parent.database_id NOS ZERO ()
+             ADD results.in_trash NOS ZERO ()
+             ADD results.is_locked NOS ZERO ()
+             ADD results.properties NOS ZERO ()
+             ADD results.properties.linkeditems_0 NOS ZERO ()
+             ADD results.properties.linkeditems_0.id NOS ZERO ()
+             ADD results.properties.linkeditems_0.type NOS ZERO ()
+             ADD results.properties.linkeditems_0.relation NOS ZERO ()
+             ADD results.properties.linkeditems_0.relation NOS ZERO ()
+             ADD results.properties.linkeditems_0.relation.field_0 NOS ZERO ()
+             ADD results.properties.linkeditems_0.has_more NOS ZERO ()
+             ADD results.properties.countdown NOS ZERO ()
+             ADD results.properties.countdown.id NOS ZERO ()
+             ADD results.properties.countdown.type NOS ZERO ()
+             ADD results.properties.countdown.formula NOS ZERO ()
+             ADD results.properties.countdown.formula.type NOS ZERO ()
+             ADD results.properties.countdown.formula.string NOS ZERO ()
+             ADD results.properties.assignee NOS ZERO ()
+             ADD results.properties.assignee.id NOS ZERO ()
+             ADD results.properties.assignee.type NOS ZERO ()
+             ADD results.properties.assignee.people NOS ZERO ()
+             ADD results.properties.assignee.people NOS ZERO ()
+             ADD results.properties.assignee.people.field_0 NOS ZERO ()
+             ADD results.properties.linkednotes_0 NOS ZERO ()
+             ADD results.properties.linkednotes_0.id NOS ZERO ()
+             ADD results.properties.linkednotes_0.type NOS ZERO ()
+             ADD results.properties.linkednotes_0.relation NOS ZERO ()
+             ADD results.properties.linkednotes_0.relation NOS ZERO ()
+             ADD results.properties.linkednotes_0.relation.field_0 NOS ZERO ()
+             ADD results.properties.linkednotes_0.has_more NOS ZERO ()
+             ADD results.properties.relatedtasks_0 NOS ZERO ()
+             ADD results.properties.relatedtasks_0.id NOS ZERO ()
+             ADD results.properties.relatedtasks_0.type NOS ZERO ()
+             ADD results.properties.relatedtasks_0.relation NOS ZERO ()
+             ADD results.properties.relatedtasks_0.relation NOS ZERO ()
+             ADD results.properties.relatedtasks_0.relation.field_0 NOS ZERO ()
+             ADD results.properties.relatedtasks_0.has_more NOS ZERO ()
+             ADD results.properties.location NOS ZERO ()
+             ADD results.properties.location.id NOS ZERO ()
+             ADD results.properties.location.type NOS ZERO ()
+             ADD results.properties.location.rich_text NOS ZERO ()
+             ADD results.properties.location.rich_text NOS ZERO ()
+             ADD results.properties.location.rich_text.field_0 NOS ZERO ()
+             ADD results.properties.extrainfo_0 NOS ZERO ()
+             ADD results.properties.extrainfo_0.id NOS ZERO ()
+             ADD results.properties.extrainfo_0.type NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.type NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.text NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.text.content NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.text.link NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.annotations NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.annotations.bold NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.annotations.italic NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.annotations.strikethrough NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.annotations.underline NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.annotations.code NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.annotations.color NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.plain_text NOS ZERO ()
+             ADD results.properties.extrainfo_0.rich_text.href NOS ZERO ()
+             ADD results.properties.date NOS ZERO ()
+             ADD results.properties.date.id NOS ZERO ()
+             ADD results.properties.date.type NOS ZERO ()
+             ADD results.properties.date.date NOS ZERO ()
+             ADD results.properties.date.date.start NOS ZERO ()
+             ADD results.properties.date.date.end NOS ZERO ()
+             ADD results.properties.date.date.time_zone NOS ZERO ()
+             ADD results.properties.type NOS ZERO ()
+             ADD results.properties.type.id NOS ZERO ()
+             ADD results.properties.type.type NOS ZERO ()
+             ADD results.properties.type.select_0 NOS ZERO ()
+             ADD results.properties.type.select_0.id NOS ZERO ()
+             ADD results.properties.type.select_0.name NOS ZERO ()
+             ADD results.properties.type.select_0.color NOS ZERO ()
+             ADD results.properties.status NOS ZERO ()
+             ADD results.properties.status.id NOS ZERO ()
+             ADD results.properties.status.type NOS ZERO ()
+             ADD results.properties.status.status NOS ZERO ()
+             ADD results.properties.status.status.id NOS ZERO ()
+             ADD results.properties.status.status.name NOS ZERO ()
+             ADD results.properties.status.status.color NOS ZERO ()
+             ADD results.properties.people NOS ZERO ()
+             ADD results.properties.people.id NOS ZERO ()
+             ADD results.properties.people.type NOS ZERO ()
+             ADD results.properties.people.rich_text NOS ZERO ()
+             ADD results.properties.people.rich_text NOS ZERO ()
+             ADD results.properties.people.rich_text.field_0 NOS ZERO ()
+             ADD results.properties.name NOS ZERO ()
+             ADD results.properties.name.id NOS ZERO ()
+             ADD results.properties.name.type NOS ZERO ()
+             ADD results.properties.name.title NOS ZERO ()
+             ADD results.properties.name.title NOS ZERO ()
+             ADD results.properties.name.title.type NOS ZERO ()
+             ADD results.properties.name.title.text NOS ZERO ()
+             ADD results.properties.name.title.text.content NOS ZERO ()
+             ADD results.properties.name.title.text.link NOS ZERO ()
+             ADD results.properties.name.title.annotations NOS ZERO ()
+             ADD results.properties.name.title.annotations.bold NOS ZERO ()
+             ADD results.properties.name.title.annotations.italic NOS ZERO ()
+             ADD results.properties.name.title.annotations.strikethrough NOS ZERO ()
+             ADD results.properties.name.title.annotations.underline NOS ZERO ()
+             ADD results.properties.name.title.annotations.code NOS ZERO ()
+             ADD results.properties.name.title.annotations.color NOS ZERO ()
+             ADD results.properties.name.title.plain_text NOS ZERO ()
+             ADD results.properties.name.title.href NOS ZERO ()
+             ADD results.url NOS ZERO ()
+             ADD results.public_url NOS ZERO ()
+             ADD results.archived NOS ZERO ()
+             ADD next_cursor NOS ZERO ()
+             ADD has_more NOS ZERO ()
+             ADD type NOS ZERO ()
+             ADD page_or_database NOS ZERO ()
+             ADD page_or_database.field_0 NOS ZERO ()
+             ADD request_id NOS ZERO ()
+        )
+        OUTPUTLIST (has_more, next_cursor, object, page_or_database, request_id, results, type
+        )
+        WRAPPER (json ds_notion)
+    );
+

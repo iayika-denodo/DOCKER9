@@ -1,0 +1,7 @@
+﻿1/databases/http/folder.intergration/intergration.vql
+*/databases/http/folder.connectivity/connectivity.vql
+*/databases/http/folder.connectivity/folder.base views/base views.vql
+*/databases/http/folder.connectivity/folder.data sources/data sources.vql
+*/databases/http/folder.connectivity/folder.data sources/datasources/df/ds_test.vql
+1/databases/http/folder.connectivity/folder.base views/views/bv_test.vql
+*/databases/http/folder.connectivity/folder.base views/views/bv_test.vql

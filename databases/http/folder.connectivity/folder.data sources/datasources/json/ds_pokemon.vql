@@ -1,0 +1,7 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON ds_pokemon
+    FOLDER = '/connectivity/data sources'
+    ROUTE HTTP 'http.ApacheHttpClientConnection,120000' GET '${databases.http.folder.connectivity.folder.data sources.datasources.json.ds_pokemon.ROUTE.HTTP.URL}'
+ AUTHENTICATION OFF
+    PROXY OFF;
+
