@@ -1,9 +1,9 @@
 ﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
 CREATE OR REPLACE WRAPPER JSON ds_datacatalog_elements
-    FOLDER = '/connectivity/data sources/dc'
+    FOLDER = '/connectivity/base views'
     DATASOURCENAME=ds_datacatalog_elements
     TUPLEROOT '/JSONFile/JSONArray'
-    ROUTE HTTP 'http.ApacheHttpClientConnection,120000' POST '${databases.http.folder.connectivity.folder.data sources.folder.dc.views.json.ds_datacatalog_elements.ROUTE.HTTP.URL}'
+    ROUTE HTTP 'http.ApacheHttpClientConnection,120000' POST '${databases.http.folder.connectivity.folder.base views.views.json.ds_datacatalog_elements.ROUTE.HTTP.URL}'
     OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
         serverid = 'JSONFile.JSONArray.serverId' : 'java.lang.Integer',
         serverresult = 'JSONFile.JSONArray.serverResult' : REGISTER OF (
@@ -110,7 +110,7 @@ CREATE OR REPLACE TABLE bv_elements I18N us_pst (
         serverid:int,
         serverresult:ds_datacatalog_elements_serverresult
     )
-    FOLDER = '/connectivity/data sources/dc'
+    FOLDER = '/connectivity/base views'
     CACHE OFF
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD ds_datacatalog_elements(
