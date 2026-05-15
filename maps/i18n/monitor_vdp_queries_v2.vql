@@ -1,0 +1,17 @@
+﻿CREATE OR REPLACE MAP i18n monitor_vdp_queries_v2 (
+    'country' = 'US'
+    'currency' = 'US DOLLAR'
+    'currencydecimalposition' = '2'
+    'currencydecimalseparator' = '.'
+    'currencygroupseparator' = ''
+    'currencysymbol' = ''
+    'datepattern' = 'yyyy-MM-dd''T''HH:mm:ss.SSS'
+    'doubledecimalposition' = '2'
+    'doubledecimalseparator' = '.'
+    'doublegroupseparator' = ''
+    'language' = 'en'
+    'moneypattern' = '###,###,###.##'
+    'timepattern' = 'DAY'
+    'timezone' = 'PST'
+);
+
