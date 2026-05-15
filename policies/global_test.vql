@@ -7,6 +7,7 @@
         VIEWS TAGGED ANY  (test)
     )
     RESTRICTION (
-        DENY 
+        FILTER = ''
+        MASKING ANY (test) WITH (HIDE) (numbers WITH REDACT, datetimes WITH DEFAULT, texts WITH HIDE) 
     );
 
