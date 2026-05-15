@@ -1,9 +1,0 @@
-﻿*/databases/sql/folder.integration/integration.vql
-1/databases/sql/folder.integration/folder.postgresql/postgresql.vql
-*/databases/sql/folder.connectivity/connectivity.vql
-*/databases/sql/folder.connectivity/folder.base views/base views.vql
-*/databases/sql/folder.connectivity/folder.base views/folder.postgresql/postgresql.vql
-*/databases/sql/folder.connectivity/folder.data sources/data sources.vql
-*/databases/sql/folder.connectivity/folder.data sources/datasources/jdbc/ds_postgresql.vql
-1/databases/sql/folder.connectivity/folder.base views/folder.postgresql/views/bv_dummy_car_data.vql
-*/databases/sql/folder.connectivity/folder.base views/folder.postgresql/views/bv_dummy_car_data.vql

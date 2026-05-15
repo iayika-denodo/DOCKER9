@@ -1,5 +1,0 @@
-﻿*/databases/sql/folder.connectivity/connectivity.vql
-*/databases/sql/folder.connectivity/folder.base views/base views.vql
-1/databases/sql/folder.connectivity/folder.base views/folder.postgresql/postgresql.vql
-*/databases/sql/folder.connectivity/folder.data sources/data sources.vql
-1/databases/sql/folder.connectivity/folder.data sources/datasources/jdbc/ds_postgresql.vql

@@ -1,11 +1,0 @@
-﻿*/databases/sql/folder.integration/integration.vql
-1/databases/sql/folder.integration/folder.databricks/databricks.vql
-*/databases/sql/folder.connectivity/connectivity.vql
-*/databases/sql/folder.connectivity/folder.base views/base views.vql
-*/databases/sql/folder.connectivity/folder.base views/folder.databricks/databricks.vql
-*/databases/sql/folder.connectivity/folder.data sources/data sources.vql
-*/databases/sql/folder.connectivity/folder.data sources/datasources/jdbc/ds_databricks.vql
-1/databases/sql/folder.connectivity/folder.base views/folder.databricks/views/bv_wonderbricks_hosts.vql
-1/databases/sql/folder.connectivity/folder.base views/folder.databricks/views/bv_wonderbricks_properties.vql
-*/databases/sql/folder.connectivity/folder.base views/folder.databricks/views/bv_wonderbricks_hosts.vql
-*/databases/sql/folder.connectivity/folder.base views/folder.databricks/views/bv_wonderbricks_properties.vql

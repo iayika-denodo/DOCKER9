@@ -1,9 +1,0 @@
-﻿CREATE OR REPLACE ASSOCIATION bv_wonderbricks_hosts_sql_bv_wonderbricks_properties REFERENTIAL CONSTRAINT 
-FOLDER = '/associations'
-    ENDPOINT bv_wonderbricks_properties bv_wonderbricks_hosts PRINCIPAL (0,1)
-    ENDPOINT bv_wonderbricks_hosts bv_wonderbricks_properties (0,1)
-    ADD MAPPING host_id=host_id;
-
-ALTER ASSOCIATION bv_wonderbricks_hosts_sql_bv_wonderbricks_properties
- LAYOUT (bv_wonderbricks_hosts = [10, 10, 200, 200], bv_wonderbricks_properties = [633, 54, 200, 200]);
-
