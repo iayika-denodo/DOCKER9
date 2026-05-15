@@ -1,0 +1,31 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JDBC ds_databricks
+    FOLDER = '/connectivity/data sources'
+    DRIVERCLASSNAME = 'com.databricks.client.jdbc.Driver'
+    DATABASEURI = '${databases.sql.folder.connectivity.folder.data sources.datasources.jdbc.ds_databricks.DATABASEURI}'
+    USERNAME = '${databases.sql.folder.connectivity.folder.data sources.datasources.jdbc.ds_databricks.USERNAME}'
+    USERPASSWORD = '${databases.sql.folder.connectivity.folder.data sources.datasources.jdbc.ds_databricks.USERPASSWORD}' ${databases.sql.folder.connectivity.folder.data sources.datasources.jdbc.ds_databricks.USERPASSWORD.ENCRYPTED}
+    CLASSPATH = 'databricks-2'
+    DATABASENAME = 'spark'
+    DATABASEVERSION = 'databricks'
+    FETCHSIZE = 1000
+    VALIDATIONQUERY = 'select 1'
+    INITIALSIZE = 0
+    MAXIDLE = -1
+    MINIDLE = 0
+    MAXACTIVE = 0
+    EXHAUSTEDACTION = 1
+    TESTONBORROW = true
+    TESTONRETURN = false
+    TESTWHILEIDLE = false
+    TIMEBETWEENEVICTION = -1
+    NUMTESTPEREVICTION = 3
+    MINEVICTABLETIME = 1800000
+    POOLPREPAREDSTATEMENTS = false
+    MAXOPENPREPAREDSTATEMENTS = -1
+    PROPERTIES ('UserAgentEntry'='Denodo/9', 'UseNativeQuery'='1', 'httpPath'='GETVAR(''httpPath'', ''text'', ''/sql/1.0/warehouses/bd856e6acfc3a46d'')' VAR)
+    OAUTHPROPERTIES ('AuthMech'='11', 'Auth_Flow'='0')
+    DATA_LOAD_CONFIGURATION (
+        BATCHINSERTSIZE = 200
+    );
+

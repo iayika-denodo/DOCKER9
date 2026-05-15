@@ -1,0 +1,63 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_wonderbricks_properties
+    FOLDER = '/connectivity/base views/databricks'
+    DATASOURCENAME=ds_databricks
+    CATALOGNAME='${databases.sql.folder.connectivity.folder.base views.folder.databricks.views.jdbc.bv_wonderbricks_properties.CATALOGNAME}' 
+    SCHEMANAME='${databases.sql.folder.connectivity.folder.base views.folder.databricks.views.jdbc.bv_wonderbricks_properties.SCHEMANAME}' 
+    RELATIONNAME='properties' 
+    OUTPUTSCHEMA (
+        property_id = 'property_id' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', description='Unique identifier of this property', sourcetypeid='-5', sourcetypename='BIGINT')  NOT NULL SORTABLE,
+        host_id = 'host_id' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', description='The identifier of the host of this property', sourcetypeid='-5', sourcetypename='BIGINT')  SORTABLE,
+        destination_id = 'destination_id' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', description='Foreign Key to ''destinations''', sourcetypeid='-5', sourcetypename='BIGINT')  SORTABLE,
+        title = 'title' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='Title of the property listing', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        description = 'description' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='Description of the property', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        base_price = 'base_price' :'java.lang.Double' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='7', description='Base price for booking', sourcetypeid='7', sourcetypename='FLOAT')  SORTABLE,
+        property_type = 'property_type' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='Type of property (e.g., house, apartment)', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        max_guests = 'max_guests' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', description='Maximum number of guests allowed', sourcetypeid='4', sourcetypename='INT')  SORTABLE,
+        bedrooms = 'bedrooms' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', description='Number of bedrooms', sourcetypeid='4', sourcetypename='INT')  SORTABLE,
+        bathrooms = 'bathrooms' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', description='Number of bathrooms', sourcetypeid='4', sourcetypename='INT')  SORTABLE,
+        property_latitude = 'property_latitude' :'java.lang.Double' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='7', description='Latitude of the property location', sourcetypeid='7', sourcetypename='FLOAT')  SORTABLE,
+        property_longitude = 'property_longitude' :'java.lang.Double' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='7', description='Longitude of the property location', sourcetypeid='7', sourcetypename='FLOAT')  SORTABLE,
+        created_at = 'created_at' :'java.time.LocalDate' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='10', description='Date the property was listed', sourcetypeid='91', sourcetypename='DATE')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_wonderbricks_properties I18N us_pst (
+        property_id:long (notnull, sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19', description = 'Unique identifier of this property'),
+        host_id:long (sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19', description = 'The identifier of the host of this property'),
+        destination_id:long (sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19', description = 'Foreign Key to ''destinations'''),
+        title:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = 'Title of the property listing'),
+        description:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = 'Description of the property'),
+        base_price:double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '7', description = 'Base price for booking'),
+        property_type:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = 'Type of property (e.g., house, apartment)'),
+        max_guests:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Maximum number of guests allowed'),
+        bedrooms:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Number of bedrooms'),
+        bathrooms:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Number of bathrooms'),
+        property_latitude:double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '7', description = 'Latitude of the property location'),
+        property_longitude:double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '7', description = 'Longitude of the property location'),
+        created_at:localdate (sourcetypeid = '91', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Date the property was listed')
+    )
+    FOLDER = '/connectivity/base views/databricks'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_wonderbricks_properties(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD property_id (any) OPT ANY
+             ADD host_id (any) OPT ANY
+             ADD destination_id (any) OPT ANY
+             ADD title (any) OPT ANY
+             ADD description (any) OPT ANY
+             ADD base_price (any) OPT ANY
+             ADD property_type (any) OPT ANY
+             ADD max_guests (any) OPT ANY
+             ADD bedrooms (any) OPT ANY
+             ADD bathrooms (any) OPT ANY
+             ADD property_latitude (any) OPT ANY
+             ADD property_longitude (any) OPT ANY
+             ADD created_at (any) OPT ANY
+        )
+        OUTPUTLIST (base_price, bathrooms, bedrooms, created_at, description, destination_id, host_id, max_guests, property_id, property_latitude, property_longitude, property_type, title
+        )
+        WRAPPER (jdbc bv_wonderbricks_properties)
+    );
+

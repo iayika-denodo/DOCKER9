@@ -1,0 +1,60 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_bakehouse_sales_customers
+    FOLDER = '/connectivity/base views/databricks'
+    DATASOURCENAME=ds_databricks
+    CATALOGNAME='${databases.sql.folder.connectivity.folder.base views.folder.databricks.views.jdbc.bv_bakehouse_sales_customers.CATALOGNAME}' 
+    SCHEMANAME='${databases.sql.folder.connectivity.folder.base views.folder.databricks.views.jdbc.bv_bakehouse_sales_customers.SCHEMANAME}' 
+    RELATIONNAME='sales_customers' 
+    OUTPUTSCHEMA (
+        customerid = 'customerID' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', description='', sourcetypeid='-5', sourcetypename='BIGINT')  SORTABLE,
+        first_name = 'first_name' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        last_name = 'last_name' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        email_address = 'email_address' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        phone_number = 'phone_number' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        address = 'address' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        city = 'city' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        state = 'state' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        country = 'country' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        continent = 'continent' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        postal_zip_code = 'postal_zip_code' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', description='', sourcetypeid='-5', sourcetypename='BIGINT')  SORTABLE,
+        gender = 'gender' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_bakehouse_sales_customers I18N us_pst (
+        customerid:long (sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19', description = ''),
+        first_name:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        last_name:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        email_address:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        phone_number:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        address:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        city:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        state:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        country:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        continent:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        postal_zip_code:long (sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19', description = ''),
+        gender:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = '')
+    )
+    FOLDER = '/connectivity/base views/databricks'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_bakehouse_sales_customers(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD customerid (any) OPT ANY
+             ADD first_name (any) OPT ANY
+             ADD last_name (any) OPT ANY
+             ADD email_address (any) OPT ANY
+             ADD phone_number (any) OPT ANY
+             ADD address (any) OPT ANY
+             ADD city (any) OPT ANY
+             ADD state (any) OPT ANY
+             ADD country (any) OPT ANY
+             ADD continent (any) OPT ANY
+             ADD postal_zip_code (any) OPT ANY
+             ADD gender (any) OPT ANY
+        )
+        OUTPUTLIST (address, city, continent, country, customerid, email_address, first_name, gender, last_name, phone_number, postal_zip_code, state
+        )
+        WRAPPER (jdbc bv_bakehouse_sales_customers)
+    );
+

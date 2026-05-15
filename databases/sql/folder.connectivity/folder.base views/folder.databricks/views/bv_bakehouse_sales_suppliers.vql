@@ -1,0 +1,54 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_bakehouse_sales_suppliers
+    FOLDER = '/connectivity/base views/databricks'
+    DATASOURCENAME=ds_databricks
+    CATALOGNAME='${databases.sql.folder.connectivity.folder.base views.folder.databricks.views.jdbc.bv_bakehouse_sales_suppliers.CATALOGNAME}' 
+    SCHEMANAME='${databases.sql.folder.connectivity.folder.base views.folder.databricks.views.jdbc.bv_bakehouse_sales_suppliers.SCHEMANAME}' 
+    RELATIONNAME='sales_suppliers' 
+    OUTPUTSCHEMA (
+        supplierid = 'supplierID' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', description='', sourcetypeid='-5', sourcetypename='BIGINT')  SORTABLE,
+        name = 'name' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        ingredient = 'ingredient' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        continent = 'continent' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        city = 'city' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        district = 'district' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        size = 'size' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  ESCAPE SORTABLE,
+        longitude = 'longitude' :'java.lang.Double' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='15', description='', sourcetypeid='8', sourcetypename='DOUBLE')  SORTABLE,
+        latitude = 'latitude' :'java.lang.Double' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='15', description='', sourcetypeid='8', sourcetypename='DOUBLE')  SORTABLE,
+        approved = 'approved' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_bakehouse_sales_suppliers I18N us_pst (
+        supplierid:long (sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19', description = ''),
+        name:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        ingredient:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        continent:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        city:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        district:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        size:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        longitude:double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '15', description = ''),
+        latitude:double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '15', description = ''),
+        approved:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = '')
+    )
+    FOLDER = '/connectivity/base views/databricks'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_bakehouse_sales_suppliers(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD supplierid (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD ingredient (any) OPT ANY
+             ADD continent (any) OPT ANY
+             ADD city (any) OPT ANY
+             ADD district (any) OPT ANY
+             ADD size (any) OPT ANY
+             ADD longitude (any) OPT ANY
+             ADD latitude (any) OPT ANY
+             ADD approved (any) OPT ANY
+        )
+        OUTPUTLIST (approved, city, continent, district, ingredient, latitude, longitude, name, size, supplierid
+        )
+        WRAPPER (jdbc bv_bakehouse_sales_suppliers)
+    );
+
