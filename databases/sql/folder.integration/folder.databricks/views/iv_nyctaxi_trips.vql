@@ -1,0 +1,10 @@
+﻿CREATE OR REPLACE VIEW iv_nyctaxi_trips FOLDER = '/integration/databricks' AS SELECT bv_nyctaxi_trips.trip_distance AS trip_distance, bv_nyctaxi_trips.fare_amount AS fare_amount, case WHEN (bv_nyctaxi_trips.trip_distance = 0) THEN NULL ELSE (bv_nyctaxi_trips.fare_amount/bv_nyctaxi_trips.trip_distance) END AS amount_per_mile, bv_nyctaxi_trips.tpep_pickup_datetime AS tpep_pickup_datetime, bv_nyctaxi_trips.tpep_dropoff_datetime AS tpep_dropoff_datetime, bv_nyctaxi_trips.pickup_zip AS pickup_zip, bv_nyctaxi_trips.dropoff_zip AS dropoff_zip FROM bv_nyctaxi_trips;
+
+ALTER VIEW iv_nyctaxi_trips
+ LAYOUT (bv_nyctaxi_trips = [20, 20, 200, 200]);
+
+ALTER VIEW iv_nyctaxi_trips
+ CACHE FULL
+    BATCHSIZEINCACHE DEFAULT TIMETOLIVEINCACHE NOEXPIRE
+    ONSCHEMACHANGE RECREATE INCREMENTAL_LOAD;
+

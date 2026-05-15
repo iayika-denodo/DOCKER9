@@ -1,0 +1,10 @@
+﻿CREATE OR REPLACE ASSOCIATION bv_bakehouse_media_customer_reviews_sql_bv_bakehouse_media_gold_reviews_chunked REFERENTIAL CONSTRAINT 
+FOLDER = '/associations'
+    ENDPOINT bv_bakehouse_media_gold_reviews_chunked bv_bakehouse_media_customer_reviews PRINCIPAL (0,1)
+    ENDPOINT bv_bakehouse_media_customer_reviews bv_bakehouse_media_gold_reviews_chunked (0,1)
+    ADD MAPPING franchiseid=franchiseid
+    ADD MAPPING review_date=review_date;
+
+ALTER ASSOCIATION bv_bakehouse_media_customer_reviews_sql_bv_bakehouse_media_gold_reviews_chunked
+ LAYOUT (bv_bakehouse_media_customer_reviews = [150, 60, 200, 200], bv_bakehouse_media_gold_reviews_chunked = [699, 27, 200, 200]);
+

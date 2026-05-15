@@ -1,0 +1,36 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_bakehouse_media_customer_reviews
+    FOLDER = '/connectivity/base views/databricks'
+    DATASOURCENAME=ds_databricks
+    CATALOGNAME='${databases.sql.folder.connectivity.folder.base views.folder.databricks.views.jdbc.bv_bakehouse_media_customer_reviews.CATALOGNAME}' 
+    SCHEMANAME='${databases.sql.folder.connectivity.folder.base views.folder.databricks.views.jdbc.bv_bakehouse_media_customer_reviews.SCHEMANAME}' 
+    RELATIONNAME='media_customer_reviews' 
+    OUTPUTSCHEMA (
+        review = 'review' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        franchiseid = 'franchiseID' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', description='', sourcetypeid='-5', sourcetypename='BIGINT')  SORTABLE,
+        review_date = 'review_date' :'java.time.LocalDateTime' (OPT) (sourcetypedecimals='9', sourcetyperadix='0', sourcetypesize='29', description='', sourcetypeid='93', sourcetypename='TIMESTAMP')  SORTABLE,
+        new_id = 'new_id' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', description='', sourcetypeid='4', sourcetypename='INT')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_bakehouse_media_customer_reviews I18N us_pst (
+        review:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = ''),
+        franchiseid:long (sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19', description = ''),
+        review_date:timestamp (sourcetypeid = '93', sourcetyperadix = '0', sourcetypedecimals = '9', sourcetypesize = '29', description = ''),
+        new_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = '')
+    )
+    FOLDER = '/connectivity/base views/databricks'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_bakehouse_media_customer_reviews(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD review (any) OPT ANY
+             ADD franchiseid (any) OPT ANY
+             ADD review_date (any) OPT ANY
+             ADD new_id (any) OPT ANY
+        )
+        OUTPUTLIST (franchiseid, new_id, review, review_date
+        )
+        WRAPPER (jdbc bv_bakehouse_media_customer_reviews)
+    );
+

@@ -1,0 +1,9 @@
+﻿CREATE OR REPLACE ASSOCIATION bv_bakehouse_sales_transactions_sql_bv_bakehouse_sales_franchises REFERENTIAL CONSTRAINT 
+FOLDER = '/associations'
+    ENDPOINT bv_bakehouse_sales_franchises bv_bakehouse_sales_transactions PRINCIPAL (0,1)
+    ENDPOINT bv_bakehouse_sales_transactions bv_bakehouse_sales_franchises (0,1)
+    ADD MAPPING franchiseid=franchiseid;
+
+ALTER ASSOCIATION bv_bakehouse_sales_transactions_sql_bv_bakehouse_sales_franchises
+ LAYOUT (bv_bakehouse_sales_transactions = [333, 99, 200, 200], bv_bakehouse_sales_franchises = [678, 47, 200, 200]);
+

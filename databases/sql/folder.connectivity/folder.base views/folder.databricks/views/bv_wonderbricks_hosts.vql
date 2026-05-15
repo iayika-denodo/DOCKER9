@@ -1,0 +1,51 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC bv_wonderbricks_hosts
+    FOLDER = '/connectivity/base views/databricks'
+    DATASOURCENAME=ds_databricks
+    CATALOGNAME='${databases.sql.folder.connectivity.folder.base views.folder.databricks.views.jdbc.bv_wonderbricks_hosts.CATALOGNAME}' 
+    SCHEMANAME='${databases.sql.folder.connectivity.folder.base views.folder.databricks.views.jdbc.bv_wonderbricks_hosts.SCHEMANAME}' 
+    RELATIONNAME='hosts' 
+    OUTPUTSCHEMA (
+        host_id = 'host_id' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='19', description='Unique identifier of the host', sourcetypeid='-5', sourcetypename='BIGINT')  NOT NULL SORTABLE,
+        name = 'name' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='Host''s full name', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        email = 'email' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='Hosts''s email address', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        phone = 'phone' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='Host''s phone number', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        is_verified = 'is_verified' :'java.lang.Boolean' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='1', description='Verification status of the host', sourcetypeid='16', sourcetypename='BOOLEAN')  NOT SORTABLE,
+        is_active = 'is_active' :'java.lang.Boolean' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='1', description='Active status of the host', sourcetypeid='16', sourcetypename='BOOLEAN')  NOT SORTABLE,
+        rating = 'rating' :'java.lang.Double' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='7', description='Host rating (1.0-5.0)', sourcetypeid='7', sourcetypename='FLOAT')  SORTABLE,
+        country = 'country' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='255', description='Host''s country of residence', sourcetypeid='12', sourcetypename='STRING')  SORTABLE,
+        joined_at = 'joined_at' :'java.time.LocalDate' (OPT) (sourcetypedecimals='0', sourcetyperadix='0', sourcetypesize='10', description='Date the host joined', sourcetypeid='91', sourcetypename='DATE')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE bv_wonderbricks_hosts I18N us_pst (
+        host_id:long (notnull, sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '19', description = 'Unique identifier of the host'),
+        name:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = 'Host''s full name'),
+        email:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = 'Hosts''s email address'),
+        phone:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = 'Host''s phone number'),
+        is_verified:boolean (sourcetypeid = '16', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '1', description = 'Verification status of the host'),
+        is_active:boolean (sourcetypeid = '16', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '1', description = 'Active status of the host'),
+        rating:double (sourcetypeid = '8', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '7', description = 'Host rating (1.0-5.0)'),
+        country:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '255', description = 'Host''s country of residence'),
+        joined_at:localdate (sourcetypeid = '91', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Date the host joined')
+    )
+    FOLDER = '/connectivity/base views/databricks'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD bv_wonderbricks_hosts(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD host_id (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD email (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD is_verified (any) OPT ANY
+             ADD is_active (any) OPT ANY
+             ADD rating (any) OPT ANY
+             ADD country (any) OPT ANY
+             ADD joined_at (any) OPT ANY
+        )
+        OUTPUTLIST (country, email, host_id, is_active, is_verified, joined_at, name, phone, rating
+        )
+        WRAPPER (jdbc bv_wonderbricks_hosts)
+    );
+

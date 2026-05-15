@@ -1,0 +1,8 @@
+﻿1/databases/sql/folder.associations/associations.vql
+*/databases/sql/folder.connectivity/connectivity.vql
+*/databases/sql/folder.connectivity/folder.base views/base views.vql
+*/databases/sql/folder.connectivity/folder.base views/folder.databricks/databricks.vql
+*/databases/sql/folder.connectivity/folder.data sources/data sources.vql
+*/databases/sql/folder.connectivity/folder.data sources/datasources/jdbc/ds_databricks.vql
+1/databases/sql/folder.connectivity/folder.base views/folder.databricks/views/bv_bakehouse_sales_transactions.vql
+1/databases/sql/folder.connectivity/folder.base views/folder.databricks/views/bv_bakehouse_sales_customers.vql
