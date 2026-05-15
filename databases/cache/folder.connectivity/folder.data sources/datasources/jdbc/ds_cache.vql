@@ -1,10 +1,10 @@
 ﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
-CREATE OR REPLACE DATASOURCE JDBC postgres_cache
+CREATE OR REPLACE DATASOURCE JDBC ds_cache
     FOLDER = '/connectivity/data sources'
     DRIVERCLASSNAME = 'org.postgresql.Driver'
-    DATABASEURI = '${databases.cache.folder.connectivity.folder.data sources.datasources.jdbc.postgres_cache.DATABASEURI}'
-    USERNAME = '${databases.cache.folder.connectivity.folder.data sources.datasources.jdbc.postgres_cache.USERNAME}'
-    USERPASSWORD = '${databases.cache.folder.connectivity.folder.data sources.datasources.jdbc.postgres_cache.USERPASSWORD}' ${databases.cache.folder.connectivity.folder.data sources.datasources.jdbc.postgres_cache.USERPASSWORD.ENCRYPTED}
+    DATABASEURI = '${databases.cache.folder.connectivity.folder.data sources.datasources.jdbc.ds_cache.DATABASEURI}'
+    USERNAME = '${databases.cache.folder.connectivity.folder.data sources.datasources.jdbc.ds_cache.USERNAME}'
+    USERPASSWORD = '${databases.cache.folder.connectivity.folder.data sources.datasources.jdbc.ds_cache.USERPASSWORD}' ${databases.cache.folder.connectivity.folder.data sources.datasources.jdbc.ds_cache.USERPASSWORD.ENCRYPTED}
     CLASSPATH = 'postgresql-17'
     DATABASENAME = 'postgresql'
     DATABASEVERSION = '17'
@@ -26,6 +26,6 @@ CREATE OR REPLACE DATASOURCE JDBC postgres_cache
     KERBEROSPROPERTIES ('jaasLogin'='false', 'user'='<user>')
     DATA_LOAD_CONFIGURATION (
         BATCHINSERTSIZE = 200
-        TARGET_SCHEMA = '${databases.cache.folder.connectivity.folder.data sources.datasources.jdbc.postgres_cache.TARGET_SCHEMA}'
+        TARGET_SCHEMA = '${databases.cache.folder.connectivity.folder.data sources.datasources.jdbc.ds_cache.TARGET_SCHEMA}'
     );
 
