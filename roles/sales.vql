@@ -1,3 +1,0 @@
-﻿CREATE OR REPLACE ROLE sales ''
-GRANT ROLE "data analyst",data_catalog_exporter;
-

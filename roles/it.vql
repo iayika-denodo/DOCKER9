@@ -1,3 +1,0 @@
-﻿CREATE OR REPLACE ROLE it 'IT'
-GRANT ROLE assignprivileges;
-

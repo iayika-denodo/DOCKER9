@@ -1,3 +1,0 @@
-﻿CREATE OR REPLACE ROLE executive 'Executive'
-GRANT ROLE assignprivileges;
-
