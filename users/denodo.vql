@@ -1,4 +1,0 @@
-﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
-CREATE OR REPLACE USER denodo '${users.denodo.PASSWORD}'  ${users.denodo.PASSWORD.ENCRYPTED} ${users.denodo.PASSWORD.ALGORITHM}  'denodo'
-GRANT ROLE allusers,jmxadmin,serveradmin,saas_server_admin;
-

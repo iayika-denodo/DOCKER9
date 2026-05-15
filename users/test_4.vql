@@ -1,4 +1,0 @@
-﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
-CREATE OR REPLACE USER test_4 '${users.test_4.PASSWORD}'  ${users.test_4.PASSWORD.ENCRYPTED} ${users.test_4.PASSWORD.ALGORITHM}  'test_4'
-GRANT ROLE allusers;
-
