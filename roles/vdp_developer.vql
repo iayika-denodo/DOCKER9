@@ -1,0 +1,3 @@
+﻿CREATE OR REPLACE ROLE vdp_developer ''
+GRANT ROLE serveradmin;
+
