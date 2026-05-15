@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE USER test_3 '${users.test_3.PASSWORD}'  ${users.test_3.PASSWORD.ENCRYPTED} ${users.test_3.PASSWORD.ALGORITHM}  'test_3'
+GRANT ROLE allusers,group_5
+GRANT CONNECT ON admin;
+
