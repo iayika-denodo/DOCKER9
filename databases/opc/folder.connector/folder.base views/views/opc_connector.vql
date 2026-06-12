@@ -1,0 +1,47 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM opc_connector
+    FOLDER = '/connector/base views'
+    DATASOURCENAME=opc_connector
+    PARAMETERS (
+      'nodeIds' = 'ns=0;i=2253'
+    )
+    OUTPUTSCHEMA (
+        nodeid = 'NodeId' : 'java.lang.String' (OPT) (sourcetypeid='12')  SORTABLE,
+        station = 'Station' : 'java.lang.String' (OPT) (sourcetypeid='12')  SORTABLE,
+        metric = 'Metric' : 'java.lang.String' (OPT) (sourcetypeid='12')  SORTABLE,
+        value = 'Value' : 'java.lang.Double' (OPT) (sourcetypeid='8')  SORTABLE,
+        quality = 'Quality' : 'java.lang.String' (OPT) (sourcetypeid='12')  SORTABLE,
+        sourcets = 'SourceTs' : 'java.time.LocalDateTime' (OPT) (sourcetypeid='93')  SORTABLE,
+        serverts = 'ServerTs' : 'java.time.LocalDateTime' (OPT) (sourcetypeid='93')  SORTABLE,
+        lastupdate = 'LastUpdate' : 'java.time.LocalDateTime' (OPT) (sourcetypeid='93')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE opc_connector I18N us_pst (
+        nodeid:text (sourcetypeid = '12', description = 'Identifies the specific OPC node from which the data is gathered.'),
+        station:text (sourcetypeid = '12', description = 'Represents the location or device station associated with the OPC data.'),
+        metric:text (sourcetypeid = '12', description = 'Denotes the type of measurement or data type recorded from the OPC node.'),
+        value:double (sourcetypeid = '8', description = 'Contains the numerical data or measurement captured from the OPC source.'),
+        quality:text (sourcetypeid = '12', description = 'Indicates the reliability or accuracy of the data collected from the OPC source.'),
+        sourcets:timestamp (sourcetypeid = '93', description = 'Records the original timestamp when the data was collected from the source.'),
+        serverts:timestamp (sourcetypeid = '93', description = 'Captures the timestamp when the data was received by the server from the OPC source.'),
+        lastupdate:timestamp (sourcetypeid = '93', description = 'Shows the most recent timestamp when the data entry was updated in the system.')
+    )
+    FOLDER = '/connector/base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD opc_connector(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD nodeid (any) OPT ANY
+             ADD station (any) OPT ANY
+             ADD metric (any) OPT ANY
+             ADD value (any) OPT ANY
+             ADD quality (any) OPT ANY
+             ADD sourcets (any) OPT ANY
+             ADD serverts (any) OPT ANY
+             ADD lastupdate (any) OPT ANY
+        )
+        OUTPUTLIST (lastupdate, metric, nodeid, quality, serverts, sourcets, station, value
+        )
+        WRAPPER (custom opc_connector)
+    );
+

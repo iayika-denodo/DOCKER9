@@ -1,0 +1,5 @@
+﻿*/databases/opc/folder.connector/connector.vql
+1/databases/opc/folder.connector/folder.base views/base views.vql
+*/extensions/jars/denodo-opc-connector.vql
+*/databases/opc/folder.connector/folder.data sources/data sources.vql
+1/databases/opc/folder.connector/folder.data sources/datasources/custom/opc_connector.vql

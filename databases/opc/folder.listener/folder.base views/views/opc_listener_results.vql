@@ -1,0 +1,44 @@
+﻿CREATE OR REPLACE WRAPPER DF opc_listener_results
+    FOLDER = '/listener'
+    DATASOURCENAME=opc_listener_results
+    OUTPUTSCHEMA (
+        nodeid = 'nodeId' (OPT),
+        station = 'station' (OPT),
+        metric = 'metric' (OPT),
+        value = 'value' (OPT),
+        quality = 'quality' (OPT),
+        sourcets = 'sourceTs' (OPT),
+        serverts = 'serverTs' (OPT),
+        receivedts = 'receivedTs' (OPT)
+    );
+
+CREATE OR REPLACE TABLE opc_listener_results I18N us_pst (
+        nodeid:text (sourcetypeid = '12', sourcetypesize = '255'),
+        station:text (sourcetypeid = '12', sourcetypesize = '255'),
+        metric:text (sourcetypeid = '12', sourcetypesize = '255'),
+        value:double,
+        quality:text (sourcetypeid = '12', sourcetypesize = '255'),
+        sourcets:timestamp (sourcetypeid = '93'),
+        serverts:timestamp (sourcetypeid = '93'),
+        receivedts:timestamp (sourcetypeid = '93')
+    )
+    FOLDER = '/listener/base views'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD opc_listener_results(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD nodeid (any) OPT ANY
+             ADD station (any) OPT ANY
+             ADD metric (any) OPT ANY
+             ADD value (any) OPT ANY
+             ADD quality (any) OPT ANY
+             ADD sourcets (any) OPT ANY
+             ADD serverts (any) OPT ANY
+             ADD receivedts (any) OPT ANY
+        )
+        OUTPUTLIST (metric, nodeid, quality, receivedts, serverts, sourcets, station, value
+        )
+        WRAPPER (df opc_listener_results)
+    );
+

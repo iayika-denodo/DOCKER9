@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF opc_listener_results
+    FOLDER = '/listener/data sources'
+    ROUTE LOCAL 'LocalConnection' '${databases.opc.folder.listener.folder.data sources.datasources.df.opc_listener_results.ROUTE.LOCAL.PATH}'
+    COLUMNDELIMITER = '|'
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = TRUE;
+

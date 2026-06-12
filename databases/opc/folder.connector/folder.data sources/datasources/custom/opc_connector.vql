@@ -1,0 +1,15 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE CUSTOM opc_connector
+    FOLDER = '/connector/data sources'
+    CLASSNAME='com.denodo.vdp.cw.OPCConnector'
+    JARS 'Denodo-OPC-Connector'
+    PARAMETERS (
+      'OPC Endpoint URL' = 'opc.tcp://milo.digitalpetri.com:62541/milo',
+      'Application Name' = 'Denodo OPC Connector',
+      'Application Uri' = 'urn:denodo:connector',
+      'Security Policy' = 'Basic256Sha256',
+      'Message Security Mode' = 'SignAndEncrypt',
+      'Client Certificate Der Path' = ROUTE LOCAL 'LocalConnection' '${databases.opc.folder.connector.folder.data sources.datasources.custom.opc_connector.Client Certificate Der Path.ROUTE.LOCAL.PATH}',
+      'Client PrivateKey Pem Path' = ROUTE LOCAL 'LocalConnection' '${databases.opc.folder.connector.folder.data sources.datasources.custom.opc_connector.Client PrivateKey Pem Path.ROUTE.LOCAL.PATH}'
+    );
+

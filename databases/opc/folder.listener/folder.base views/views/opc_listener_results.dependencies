@@ -1,0 +1,5 @@
+﻿*/databases/opc/folder.listener/listener.vql
+1/databases/opc/folder.listener/folder.base views/base views.vql
+1/databases/opc/folder.listener/listener.vql
+*/databases/opc/folder.listener/folder.data sources/data sources.vql
+1/databases/opc/folder.listener/folder.data sources/datasources/df/opc_listener_results.vql
