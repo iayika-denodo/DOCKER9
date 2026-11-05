@@ -23,7 +23,7 @@ CREATE OR REPLACE DATASOURCE JDBC ds_mysql
     MINEVICTABLETIME = 1800000
     POOLPREPAREDSTATEMENTS = false
     MAXOPENPREPAREDSTATEMENTS = -1
-    PROPERTIES ('allowLoadLocalInfile'='true', 'vdp.streamRows'='yes')
+    PROPERTIES ('vdp.streamRows'='yes', 'allowLoadLocalInfile'='true')
     DATA_LOAD_CONFIGURATION (
         BATCHINSERTSIZE = 200
         USEEXTERNALTABLES ( 

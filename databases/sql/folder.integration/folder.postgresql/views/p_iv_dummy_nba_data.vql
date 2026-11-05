@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_iv_dummy_nba_data FOLDER = '/integration/postgresql' AS SELECT iv_dummy_nba_data.id AS id, iv_dummy_nba_data.player_name AS player_name, iv_dummy_nba_data.team AS team, iv_dummy_nba_data.position AS position, iv_dummy_nba_data.points_per_game AS points_per_game, iv_dummy_nba_data.rebounds_per_game AS rebounds_per_game, iv_dummy_nba_data.assists_per_game AS assists_per_game FROM iv_dummy_nba_data;
+
+ALTER VIEW p_iv_dummy_nba_data
+ LAYOUT (iv_dummy_nba_data = [20, 20, 200, 200]);
+

@@ -23,7 +23,7 @@ CREATE OR REPLACE DATASOURCE JDBC ds_databricks
     MINEVICTABLETIME = 1800000
     POOLPREPAREDSTATEMENTS = false
     MAXOPENPREPAREDSTATEMENTS = -1
-    PROPERTIES ('UserAgentEntry'='Denodo/9', 'UseNativeQuery'='1', 'httpPath'='GETVAR(''httpPath'', ''text'', ''/sql/1.0/warehouses/bd856e6acfc3a46d'')' VAR)
+    PROPERTIES ('httpPath'='GETVAR(''httpPath'', ''text'', ''/sql/1.0/warehouses/bd856e6acfc3a46d'')' VAR, 'UseNativeQuery'='1', 'UserAgentEntry'='Denodo/9')
     OAUTHPROPERTIES ('AuthMech'='11', 'Auth_Flow'='0')
     DATA_LOAD_CONFIGURATION (
         BATCHINSERTSIZE = 200
