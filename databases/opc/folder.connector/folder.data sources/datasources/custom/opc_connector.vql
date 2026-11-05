@@ -1,10 +1,10 @@
 ﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
 CREATE OR REPLACE DATASOURCE CUSTOM opc_connector
     FOLDER = '/connector/data sources'
-    CLASSNAME='com.denodo.vdp.cw.OPCConnector'
-    JARS 'Denodo-OPC-Connector'
+    CLASSNAME='com.denodo.connect.opc.OPCCustomWrapper'
+    JARS 'denodo-opc-customwrapper'
     PARAMETERS (
-      'OPC Endpoint URL' = 'opc.tcp://milo.digitalpetri.com:62541/milo',
+      'OPC Endpoint URL' = 'opc.tcp://opcuaserver.com:48010',
       'Application Name' = 'Denodo OPC Connector',
       'Application Uri' = 'urn:denodo:connector',
       'Security Policy' = 'Basic256Sha256',
