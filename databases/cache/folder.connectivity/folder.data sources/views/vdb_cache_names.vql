@@ -1,0 +1,36 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC vdb_cache_names
+    FOLDER = '/connectivity/data sources'
+    DATASOURCENAME=ds_cache
+    SCHEMANAME='${databases.cache.folder.connectivity.folder.data sources.views.jdbc.vdb_cache_names.SCHEMANAME}' ESCAPE
+    RELATIONNAME='vdb_cache_names' 
+    OUTPUTSCHEMA (
+        databasename = 'databasename' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='255', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        viewname = 'viewname' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='255', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        vdbname = 'vdbname' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='255', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        sqlname = 'sqlname' :'java.lang.String' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='64', sourcetypeid='12', sourcetypename='varchar')  SORTABLE
+    )
+    INDEX 'index_on_CACHE_0_vdb_cache_names_by_databaseName_viewName' OTHER ( 'databasename' , 'viewname' );
+
+CREATE OR REPLACE TABLE vdb_cache_names I18N us_pst (
+        databasename:text (sourcetypeid = '-9', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '255'),
+        viewname:text (sourcetypeid = '-9', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '255'),
+        vdbname:text (sourcetypeid = '-9', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '255'),
+        sqlname:text (sourcetypeid = '-9', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '64')
+    )
+    FOLDER = '/connectivity/data sources'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD vdb_cache_names(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD databasename (any) OPT ANY
+             ADD viewname (any) OPT ANY
+             ADD vdbname (any) OPT ANY
+             ADD sqlname (any) OPT ANY
+        )
+        OUTPUTLIST (databasename, sqlname, vdbname, viewname
+        )
+        WRAPPER (jdbc vdb_cache_names)
+    );
+
