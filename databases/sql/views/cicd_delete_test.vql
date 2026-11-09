@@ -1,2 +1,0 @@
-﻿CREATE OR REPLACE VIEW cicd_delete_test AS SELECT * FROM iv_dummy_nba_data;
-
